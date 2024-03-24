@@ -1,15 +1,11 @@
+<script setup>
+  import Header from "../components/Header.vue";
+</script>
+
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <Header></Header>
+
+  <h1>This is about page</h1>
 </template>
 
-<style>
-  @media (min-width: 1024px) {
-    .about {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-    }
-  }
-</style>
+<style lang="scss" scoped></style>
