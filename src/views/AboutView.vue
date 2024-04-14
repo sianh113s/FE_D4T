@@ -1,11 +1,12 @@
 <script setup>
-  import Header from "../components/Header.vue";
+  import HeaderAfterLogin from "@/components/default/HeaderAfterLogin.vue";
+  import FooterApp from "@/components/default/FooterApp.vue";
 </script>
 
 <template>
-  <Header></Header>
-
+  <HeaderAfterLogin></HeaderAfterLogin>
   <h1>This is about page</h1>
+  <FooterApp></FooterApp>
 </template>
 
 <style lang="scss" scoped></style>
