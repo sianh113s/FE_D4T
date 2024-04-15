@@ -22,6 +22,11 @@ const router = createRouter({
       name: "contact",
       component: HomeView,
     },
+    {
+      path: "/sach",
+      name: "Sách",
+      component: () => import("../views/BookDetail.vue"),
+    },
   ],
 });
 

@@ -21,7 +21,7 @@ import Dropdown from "primevue/dropdown";
 import InputText from "primevue/inputtext";
 import Avatar from "primevue/avatar";
 import AvatarGroup from "primevue/avatargroup";
-
+import Breadcrumb from 'primevue/breadcrumb';
 const app = createApp(App);
 const pinia = createPinia();
 
@@ -30,6 +30,7 @@ app.use(pinia);
 app.use(PrimeVue, { ripple: true }, { inputStyle: "filled" }); //! Use Prime UI
 app.use(ToastService);
 
+app.component("Breadcrumb",Breadcrumb);
 app.component("IconField", IconField);
 app.component("InputIcon", InputIcon);
 app.component("Toast", Toast);
