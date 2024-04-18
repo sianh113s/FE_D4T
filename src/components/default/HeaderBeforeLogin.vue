@@ -1,4 +1,7 @@
-<script setup></script>
+<script setup>
+  import { ref } from "vue";
+  const searchValue = ref("");
+</script>
 
 <template>
   <div>
@@ -29,7 +32,7 @@
                   <InputIcon class="pi pi-search"> </InputIcon>
                   <InputText
                     class="rounded-[50px]"
-                    v-model="value1"
+                    v-model="searchValue"
                     placeholder="Search"
                   />
                 </IconField>
