@@ -27,7 +27,10 @@
           </ul>
         </div>
         <div class="items-center gap-3 right">
-          <Button class="rounded-[50px] cursor-pointer" label="Đăng ký" severity="secondary" outlined />
+          <router-link to="/signup">
+            <Button class="rounded-[50px] cursor-pointer" label="Đăng ký" severity="secondary" outlined />
+          </router-link>
+
           <router-link to="/signin">
             <Button class="rounded-[50px] cursor-pointer" label="Đăng nhập" outlined />
           </router-link>
