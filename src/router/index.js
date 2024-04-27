@@ -22,10 +22,11 @@ const router = createRouter({
       name: "contact",
       component: HomeView,
     },
-    // {
-    //   path: "/Nap",
-    //   name: "Nap",
-    // }
+    {
+      path: "/Nap",
+      name: "Nap",
+      component: () => import("../views/NapView.vue"),
+    }
   ],
 });
 
