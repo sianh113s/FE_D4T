@@ -3,13 +3,17 @@
   import HeaderAfterLogin from "@/components/default/HeaderAfterLogin.vue";
   import FooterApp from "@/components/default/FooterApp.vue";
   import { RouterLink, RouterView } from "vue-router";
+  import { ref } from "vue";
+  
+
 </script>
 
 <template>
   <HeaderBeforeLogin></HeaderBeforeLogin>
   <HeaderAfterLogin></HeaderAfterLogin>
+  
   <h1>This is Home View</h1>
-  <RouterLink to="/about">Go to About</RouterLink>
+  <RouterLink to="/account">Go to Account</RouterLink>
   <FooterApp></FooterApp>
 </template>
 

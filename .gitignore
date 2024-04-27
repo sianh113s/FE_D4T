@@ -30,3 +30,4 @@ coverage
 *.tsbuildinfo
 yarn.lock
 .vscode
+bun.lockb

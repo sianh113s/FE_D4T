@@ -127,7 +127,7 @@
                         class="w-full"
                         label="Tủ sách cá nhân"
                         severity="secondary"
-                        icon="pi pi-list"
+                        icon="pi pi-book"
                         text
                       />
                     </li>
