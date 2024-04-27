@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import NapView from "@/views/NapView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,7 +26,7 @@ const router = createRouter({
     {
       path: "/Nap",
       name: "Nap",
-      component: () => import("../views/NapView.vue"),
+      component: NapView,
     }
   ],
 });

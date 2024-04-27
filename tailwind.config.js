@@ -16,9 +16,12 @@ module.exports = {
         black: "#000",
         cornsilk: "#faf4d4",
         brown: "#9f2d2d",
+        green: "#119663",
         gainsboro: {
           "100": "#d9d9d9",
           "200": "rgba(217, 217, 217, 0.25)",
+          "300": "#119663",
+
         },
         aquamarine: "#8bf8c4",
         chocolate: "#c17011",
