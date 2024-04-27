@@ -22,6 +22,10 @@ const router = createRouter({
       name: "contact",
       component: HomeView,
     },
+    // {
+    //   path: "/Nap",
+    //   name: "Nap",
+    // }
   ],
 });
 
