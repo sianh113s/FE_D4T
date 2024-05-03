@@ -30,9 +30,24 @@ const router = createRouter({
       component: () => import("../views/AboutView.vue"),
     },
     {
-      path: "/contact",
-      name: "contact",
-      component: HomeView,
+      path: "/account/bookcase",
+      name: "bookcase",
+      component: () => import("../views/BookCaseView.vue"),
+    },
+    {
+      path: "/account/profile",
+      name: "profile",
+      component: () => import("../views/AccountProfileView.vue"),
+    },
+    {
+      path: "/account/transaction-histories",
+      name: "transaction-histories",
+      component: () => import("../views/TransactionHistoriesView.vue"),
+    },
+    {
+      path: "/test",
+      name: "test",
+      component: () => import("../views/test.vue"),
     },
   ],
 });
