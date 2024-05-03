@@ -58,7 +58,6 @@
 <style scoped> .registration-login {
      color: white
  }
-
  .btn-color {
      background-color: #ec7200;
      transform: translateY(-2px)

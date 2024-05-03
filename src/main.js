@@ -23,6 +23,8 @@ import Avatar from "primevue/avatar";
 import AvatarGroup from "primevue/avatargroup";
 import FloatLabel from 'primevue/floatlabel';
 import Password from 'primevue/password';
+import MegaMenu from 'primevue/megamenu';
+import Galleria from 'primevue/galleria';
 
 
 
@@ -49,6 +51,8 @@ app.component("Avatar", Avatar);
 app.component("AvatarGroup", AvatarGroup);
 app.component("FloatLabel", FloatLabel);
 app.component("Password", Password);
+app.component("MegaMenu", MegaMenu);
+app.component("Galleria", Galleria);
 
 //
 app.mount("#app");
