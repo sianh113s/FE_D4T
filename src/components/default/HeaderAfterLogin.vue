@@ -34,7 +34,7 @@
             <li>
               <div class="flex flex-wrap gap-3 card justify-content-center">
                 <IconField iconPosition="left">
-                  <InputIcon class="pi pi-search"> </InputIcon>
+                  <InputIcon class="pi pi-search"/>
                   <InputText
                     class="rounded-[50px]"
                     v-model="value1"
@@ -170,6 +170,7 @@
   }
   .header__inner {
     box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+    
   }
 
   .tool-menu {
