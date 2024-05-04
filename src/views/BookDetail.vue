@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
-import "./BookDetail.css";
+import Avatar from "primevue/avatar";
 
 const value = ref(0.0);
 const home = ref({
@@ -27,6 +27,12 @@ const limitedContent = computed(() => {
   }
   return content; // Return full content if within or equal to 150 characters
 });
+
+const user=ref([
+  {
+    avatar: ""
+  }
+]);
 </script>
 
 <template>
@@ -138,25 +144,95 @@ const limitedContent = computed(() => {
           </div>
         </div>
       </div>
-      <div class="dsc">
+      <div class="style">
         <p class="pi pi-list">
-          <span style="font-family: Arial, Helvetica, sans-serif;">
+          <span style="font-family: Arial, Helvetica, sans-serif">
             Danh Sách Chương</span
           >
         </p>
         <div class="card">
-        <Paginator
+          <Paginator
             :template="{
-                '640px': 'PrevPageLink CurrentPageReport NextPageLink',
-                '960px': 'FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
-                '1300px': 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink',
-                default: 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink JumpToPageDropdown JumpToPageInput'
+              '640px': 'PrevPageLink CurrentPageReport NextPageLink',
+              '960px':
+                'FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
+              '1300px':
+                'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink',
+              default:
+                'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink JumpToPageDropdown JumpToPageInput',
             }"
             :rows="5"
-            :totalRecords="10">
-        </Paginator>
-    </div>
+            :totalRecords="10"
+          >
+          </Paginator>
+        </div>
+        <div class="style">
+          <p class="pi pi-comments">
+          <span style="font-family: Arial, Helvetica, sans-serif">
+            Bình luận</span
+          >
+        </p>
+        </div>
       </div>
     </div>
   </div>
 </template>
+<style scoped>
+.navbar{
+    background: linear-gradient(
+        90deg,
+        rgba(112, 225, 205, 0.06),
+        rgba(61, 123, 112, 0.06)
+      );
+}
+.tt-lng{
+
+  font-size: 40px;
+  font-weight: 700;
+  width: 400px;
+  height: 67px;
+}
+.rate i{
+  font-size: 20px;
+  font-weight: 700;
+}
+.descinline{
+  display: inline;
+}
+.descempty{
+  display: none;
+}
+.formatted-content {
+  white-space: pre-wrap; 
+  font-family: Arial, Helvetica, sans-serif;
+}
+.info > fieldset{
+  border-color:mediumseagreen;
+
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* Canh giữa theo chiều ngang */
+  align-items: flex-start; /* Canh đỉnh theo chiều dọc */
+  margin: 0 auto; /* Canh giữa theo chiều ngang */
+  max-width: 1200px; /* Giới hạn chiều rộng tối đa của container */
+  padding: 0 20px; /* Khoảng cách lề bên trong container */
+  margin-top: 20px;
+}
+.description > a{
+  display: flex;
+  justify-content: right;
+  cursor: pointer;
+}
+.dsc{
+ margin-top: 50px;
+}
+.style > p{
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: 3px solid ;
+  border-color: aquamarine;
+  padding:12px
+}
+</style>
