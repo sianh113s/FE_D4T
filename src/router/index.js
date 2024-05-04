@@ -25,7 +25,7 @@ const router = createRouter({
     {
       path: "/sach",
       name: "Sách",
-      component: () => import("../views/BookDetail/BookDetail.vue"),
+      component: () => import("../views/BookDetail.vue"),
     },
   ],
 });
