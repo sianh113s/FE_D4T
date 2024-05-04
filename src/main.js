@@ -4,6 +4,8 @@ import "animate.css";
 import App from "./App.vue";
 import router from "./router";
 import { createPinia } from "pinia";
+import "primeicons/primeicons.css";
+
 
 //! import UI
 import PrimeVue from "primevue/config";
@@ -21,8 +23,15 @@ import Dropdown from "primevue/dropdown";
 import InputText from "primevue/inputtext";
 import Avatar from "primevue/avatar";
 import AvatarGroup from "primevue/avatargroup";
+
+import Breadcrumb from 'primevue/breadcrumb';
+import Rating from "primevue/rating";
+import Fieldset from "primevue/fieldset";
+import Paginator from 'primevue/paginator';
+
 import FloatLabel from 'primevue/floatlabel';
 import Password from 'primevue/password';
+
 
 
 
@@ -36,6 +45,10 @@ app.use(pinia);
 app.use(PrimeVue, { ripple: true }, { inputStyle: "filled" }); //! Use Prime UI
 app.use(ToastService);
 
+app.component("Paginator",Paginator);
+app.component("Fieldset",Fieldset);
+app.component("Rating",Rating);
+app.component("Breadcrumb",Breadcrumb);
 app.component("IconField", IconField);
 app.component("InputIcon", InputIcon);
 app.component("Toast", Toast);
