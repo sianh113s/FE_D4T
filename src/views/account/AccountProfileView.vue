@@ -31,14 +31,25 @@
     },
   ]);
 
-  const value_username = ref(null);
-  const value_id = ref(null);
-  const value_fullname = ref(null);
-  const value_birthdate = ref(null);
-  const value_gender = ref(null);
-  const value_email = ref("tructhanh2k3@gmail.com");
-  const value_pass = ref("123");
-  const value_phone = ref("0382055453");
+  const user = ref({
+    username: 'thanhtruc123',
+    fullname: 'vi thi thanh truc',
+    birthdate: '30/5/2000',
+    gender: 'nữ',
+    email: 'tructhanh@gmail.com',
+    pass: '123',
+    phone: '0382055453',
+  });
+
+  const update = () => {
+    console.log(user);
+  };
+
+  const save = () => {
+
+  };
+
+
 </script>
 
 <template>
@@ -68,14 +79,15 @@
           <form
             class="flex justify-between gap-14"
             autocomplete="off"
+            @submit.prevent="update"
           >
             <div class="grid gap-6 mt-8">
               <div class="flex justify-content-center">
                 <FloatLabel>
                   <InputText
-                    class="rounded-[20px] w-[458px] h-[50px]"
+                    class="rounded-[10px] w-[458px] h-[50px]"
                     id="username"
-                    v-model="value_username"
+                    v-model="user.username"
                   />
                   <label for="username">Tên đăng nhập</label>
                 </FloatLabel>
@@ -84,9 +96,9 @@
               <div class="flex justify-content-center">
                 <FloatLabel>
                   <InputText
-                    class="rounded-[20px] w-[458px] h-[50px]"
+                    class="rounded-[10px] w-[458px] h-[50px]"
                     id="fullname"
-                    v-model="value_fullname"
+                    v-model="user.fullname"
                   />
                   <label for="fullname">Họ và tên</label>
                 </FloatLabel>
@@ -94,19 +106,21 @@
 
               <div class="flex justify-content-center">
                 <FloatLabel>
-                  <InputText
-                    class="rounded-[20px] w-[210px] h-[50px]"
+                  <Calendar
+                    class="rounded-[10px] w-[210px] h-[50px]"
                     id="birthdate"
-                    v-model="value_birthdate"
+                    dateFormat="dd/mm/yy"
+                    v-model="user.birthdate"
+                    showIcon :showOnFocus="false"
                   />
                   <label for="birthdate">Ngày sinh</label>
                 </FloatLabel>
 
                 <FloatLabel class="mx-[38px]">
                   <InputText
-                    class="rounded-[20px] w-[210px] h-[50px]"
+                    class="rounded-[10px] w-[210px] h-[50px]"
                     id="gender"
-                    v-model="value_gender"
+                    v-model="user.gender"
                   />
                   <label for="gender">Giới tính</label>
                 </FloatLabel>
@@ -116,11 +130,13 @@
                 <Button
                   class="rounded-[20px] btn_update"
                   label="Cập nhật"
+                  type="submit"
                 />
                 <Button
                   class="rounded-[20px] btn_cancel"
                   label="Hủy"
                   severity="contrast"
+                  type="reset"
                 />
               </div>
             </div>
@@ -128,7 +144,7 @@
             <!-- form-right -->
             <div class="flex flex-col items-center justify-center gap-4">
               <img
-                src="../assets/imgs/avatar_demo.png"
+                src="@/assets/imgs/avatar_demo.png"
                 alt=""
                 width="150px"
               />
@@ -154,15 +170,15 @@
       </template>
       <!-- Tài khoản và bảo mật -->
       <template v-else-if="selectedTab === 2">
-        <form autocomplete="off">
+        <form @submit="save" autocomplete="off">
           <div class="content_security">
             <div class="grid gap-6 mt-6">
               <div class="flex justify-content-center">
                 <FloatLabel>
                   <InputText
-                    class="rounded-[20px] w-[458px] h-[50px]"
+                    class="rounded-[10px] w-[458px] h-[50px]"
                     id="useremail"
-                    v-model="value_email"
+                    v-model="user.email"
                     disabled
                   />
                   <label for="useremail">Email</label>
@@ -172,9 +188,10 @@
               <div class="flex justify-content-center">
                 <FloatLabel>
                   <InputText
-                    class="rounded-[20px] w-[458px] h-[50px]"
+                    class="rounded-[10px] w-[458px] h-[50px]"
                     id="pass"
-                    v-model="value_pass"
+                    v-model="user.pass"
+                    :feedback="false"
                   />
                   <label for="pass">Mật khẩu</label>
                 </FloatLabel>
@@ -183,9 +200,9 @@
               <div class="flex justify-content-center">
                 <FloatLabel>
                   <InputText
-                    class="rounded-[20px] w-[458px] h-[50px]"
+                    class="rounded-[10px] w-[458px] h-[50px]"
                     id="phone"
-                    v-model="value_phone"
+                    v-model="user.phone"
                   />
                   <label for="phone">Số điện thoại</label>
                 </FloatLabel>
@@ -195,11 +212,13 @@
                 <Button
                   class="rounded-[20px] btn_save"
                   label="Lưu"
+                  type="submit"
                 />
                 <Button
                   class="rounded-[20px] btn_cancel"
                   label="Hủy"
                   severity="contrast"
+                  type="reset"
                 />
               </div>
 

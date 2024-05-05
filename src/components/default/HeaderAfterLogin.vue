@@ -4,6 +4,8 @@
   import { useConditionStore } from "@/store";
 
   const store = useConditionStore();
+
+  
 </script>
 
 <template>
@@ -113,24 +115,39 @@
               <div class="tooltip-bottom">
                 <div class="p-[15px]">
                   <ul>
-                    <li class="flex items-center gap-3">
-                      <Button
-                        class="w-full"
-                        label="Quản lý tài khoản"
-                        severity="secondary"
-                        icon="pi pi-user-edit"
-                        text
-                      />
-                    </li>
-                    <li class="flex items-center gap-3">
-                      <Button
-                        class="w-full"
-                        label="Tủ sách cá nhân"
-                        severity="secondary"
-                        icon="pi pi-book"
-                        text
-                      />
-                    </li>
+                    <RouterLink :to="{name: 'profile' }">
+                      <li class="flex items-center gap-3">
+                        <Button
+                          class="w-full"
+                          label="Quản lý tài khoản"
+                          severity="secondary"
+                          icon="pi pi-user-edit"
+                          text
+                        />
+                      </li>
+                    </RouterLink>
+                    <RouterLink :to="{name: 'bookcase' }">
+                      <li class="flex items-center gap-3">
+                        <Button
+                          class="w-full"
+                          label="Tủ sách cá nhân"
+                          severity="secondary"
+                          icon="pi pi-book"
+                          text
+                        />
+                      </li>
+                    </RouterLink>
+                    <RouterLink :to="{name: 'transaction-histories' }">
+                      <li class="flex items-center gap-3">
+                        <Button
+                          class="w-full"
+                          label="Lịch sử giao dịch"
+                          severity="secondary"
+                          icon="pi pi-history"
+                          text
+                        />
+                      </li>
+                    </RouterLink>
                     <li class="flex items-center gap-3">
                       <Button
                         class="w-full"
@@ -138,17 +155,20 @@
                         severity="secondary"
                         icon="pi pi-headphones"
                         text
+                        @click="modal = true"
                       />
                     </li>
-                    <li class="flex items-center gap-3">
-                      <Button
+                    <RouterLink>
+                      <li class="flex items-center gap-3">
+                        <Button
                         class="w-full"
                         label="Đăng xuất"
                         severity="secondary"
                         icon="pi pi-sign-out"
                         text
-                      />
-                    </li>
+                        />
+                      </li>
+                    </RouterLink>
                   </ul>
                 </div>
               </div>

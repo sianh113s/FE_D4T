@@ -32,22 +32,22 @@ const router = createRouter({
     {
       path: "/account/bookcase",
       name: "bookcase",
-      component: () => import("../views/BookCaseView.vue"),
+      component: () => import("../views/account/BookCaseView.vue"),
     },
     {
       path: "/account/profile",
       name: "profile",
-      component: () => import("../views/AccountProfileView.vue"),
+      component: () => import("../views/account/AccountProfileView.vue"),
     },
     {
       path: "/account/transaction-histories",
       name: "transaction-histories",
-      component: () => import("../views/TransactionHistoriesView.vue"),
+      component: () => import("../views/account/TransactionHistoriesView.vue"),
     },
     {
       path: "/test",
       name: "test",
-      component: () => import("../views/test.vue"),
+      component: () => import("../views/account/test.vue"),
     },
   ],
 });
