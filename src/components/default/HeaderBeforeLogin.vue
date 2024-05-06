@@ -41,17 +41,22 @@
           </ul>
         </div>
         <div class="items-center gap-3 right">
-          <Button
-            class="rounded-[50px] cursor-pointer"
-            label="Đăng ký"
-            severity="secondary"
-            outlined
-          />
-          <Button
-            class="rounded-[50px] cursor-pointer"
-            label="Đăng nhập"
-            outlined
-          />
+          <router-link to="/signup">
+            <Button
+              class="rounded-[50px] cursor-pointer"
+              label="Đăng ký"
+              severity="secondary"
+              outlined
+            />
+          </router-link>
+
+          <router-link to="/signin">
+            <Button
+              class="rounded-[50px] cursor-pointer"
+              label="Đăng nhập"
+              outlined
+            />
+          </router-link>
         </div>
       </div>
     </header>
@@ -66,6 +71,7 @@
     align-items: center;
     justify-content: center;
   }
+
   .header__inner {
     box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
   }
