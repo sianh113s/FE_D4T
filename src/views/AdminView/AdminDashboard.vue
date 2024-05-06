@@ -8,5 +8,5 @@
 
 <style scoped></style>
 
-feat: create admin view
-Su dung Primevue de xay dung giao dien
+<!-- feat: create admin view
+Su dung Primevue de xay dung giao dien -->

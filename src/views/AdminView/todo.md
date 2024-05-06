@@ -1,4 +1,4 @@
-# Dashboard
+# A. Dashboard
 
 ## Thống kê về người dùng
 
@@ -17,7 +17,7 @@
 - Số lượng giao dịch mới trong ngày
 - Tổng doanh thu theo ngày/tuần
 
-# Quản lý
+## B. Quản lý
 
 ## Quản lý người dùng
 
