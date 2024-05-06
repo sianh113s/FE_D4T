@@ -3,6 +3,9 @@
 
   import { useConditionStore } from "@/store";
 
+  import { ref } from "vue";
+  const searchValue = ref("");
+
   const store = useConditionStore();
 </script>
 
@@ -37,7 +40,7 @@
                   <InputIcon class="pi pi-search"/>
                   <InputText
                     class="rounded-[50px]"
-                    v-model="value1"
+                    v-model="searchValue"
                     placeholder="Search"
                   />
                 </IconField>
@@ -128,6 +131,15 @@
                         label="Tủ sách cá nhân"
                         severity="secondary"
                         icon="pi pi-book"
+                        text
+                      />
+                    </li>
+                    <li class="flex items-center gap-3">
+                      <Button
+                        class="w-full"
+                        label="Lịch sử giao dịch"
+                        severity="secondary"
+                        icon="pi pi-list"
                         text
                       />
                     </li>
