@@ -12,7 +12,6 @@
     <HeaderBeforeLogin v-if="!store.isLoggedIn"></HeaderBeforeLogin>
     <HeaderAfterLogin v-else></HeaderAfterLogin>
     <h1>This is Home View</h1>
-    <RouterLink to="/about">Go to About</RouterLink>
     <RouterLink to="/admin">Go to Admin</RouterLink>
     <FooterApp></FooterApp>
   </div>
