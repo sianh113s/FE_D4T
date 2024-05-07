@@ -146,7 +146,7 @@
           type="submit"
           class="btn-color w-[220px] h-[50px] mt-10 rounded-2xl font-[500] text-[15px] tracking-wide shadow-xl"
         >
-          <span>TẠO TẢI KHOẢN</span>
+          <span>TẠO TÀI KHOẢN</span>
         </button>
       </div>
       <div class="sub-title flex justify-between items-center p-[10px]">
