@@ -23,10 +23,17 @@ import Dropdown from "primevue/dropdown";
 import InputText from "primevue/inputtext";
 import Avatar from "primevue/avatar";
 import AvatarGroup from "primevue/avatargroup";
+
 import Breadcrumb from 'primevue/breadcrumb';
 import Rating from "primevue/rating";
 import Fieldset from "primevue/fieldset";
 import Paginator from 'primevue/paginator';
+
+import FloatLabel from 'primevue/floatlabel';
+import Password from 'primevue/password';
+
+
+
 
 
 
@@ -53,6 +60,8 @@ app.component("Dropdown", Dropdown);
 app.component("InputText", InputText);
 app.component("Avatar", Avatar);
 app.component("AvatarGroup", AvatarGroup);
+app.component("FloatLabel", FloatLabel);
+app.component("Password", Password);
 
 //
 app.mount("#app");

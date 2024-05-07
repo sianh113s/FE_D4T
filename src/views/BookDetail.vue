@@ -1,31 +1,32 @@
 <script setup>
-import { ref, computed, watch } from "vue";
+  import { ref, computed } from "vue";
+  import Avatar from "primevue/avatar";
 
-const value = ref(0.0);
-const home = ref({
-  icon: "pi pi-home ",
-  label: "Trang chủ",
-  route: "/",
-});
-const items = ref([{ label: "Tết ở làng địa ngục", route: "/sach" }]);
-const queryBook = ref([
-  {
-    title: `Tết ở làng Địa Ngục`,
-    img: "https://i.pinimg.com/736x/fc/3f/b3/fc3fb338840cb246352cce4de11f2267.jpg",
-    author: "Thảo Trang",
-    category: "Trinh thám - Kinh dị",
-    Description: ` Năm đó, tại một ngôi làng xa xôi trên một ngọn núi hoang vu, người ta đón Tết trong sự kinh hãi tột độ, hoài nghi đau đáu và giận dữ khôn cùng trước sự ập tới của những bi kich tàn khốc.Ngôi làng ấy vốn dĩ không có tên, nhưng những người nơi đây mặc định chốn này là địa ngục. Dân trong làng không ai dám tự ý băng rừng thoát khỏi làng, càng không biết thế giới bên ngoài rộng lớn như thế nào, bởi lẽ họ sợ người khác sẽ biết rằng bản thân mình vốn là hậu duệ của băng cướp khét tiếng ở truông nhà Hồ dưới thời chúa Nguyễn ở Đàng Trong.\nVào một đêm cuối năm rét buốt, ông Thập – người duy nhất có thể ra khỏi làng – được báo mộng bởi một âm hồn mặc quan phục màu đỏ rực. Làng Địa Ngục sắp gặp họa lớn!Thành danh bằng những tác phẩm văn học kinh dị đậm chất Việt Nam được phát hành qua mạng, lần này tác giả Thảo Trang tiếp tục mang đến một câu chuyện hấp dẫn, mở ra một thế giới huyền bí với những sinh vật, thế lực siêu linh mà người đọc không bao giờ hết hứng thú, để lại những dư âm không phai khi gấp sách lại.Tết ở làng Địa Ngục  là một trong những tác phẩm kinh dị siêu linh đậm chất Việt Nam vô cùng ăn khách của tác giả Thảo Trang. \nTác phẩm đưa người đọc về một thời xa xưa, với bối cảnh là một ngôi làng xa xôi trên ngọn núi hoang vu. Ở đó, người ta đón tết trong sự kinh hãi tột độ, hoài nghi đau đáu và giận dữ khôn cùng trước sự ập tới của những bi kịch tàn khốc.`,
-  },
-]);
-const showFullContent = ref(false);
-const limitedContent = computed(() => {
-  const maxLength = 500;
-  const content = queryBook.value[0]?.Description;
-  if (content && content.length > maxLength) {
-    return content.slice(0, maxLength) + "...";
-  }
-  return content; // Return full content if within or equal to 150 characters
-});
+  const value = ref(0.0);
+  const home = ref({
+    icon: "pi pi-home ",
+    label: "Trang chủ",
+    route: "/",
+  });
+  const items = ref([{ label: "Tết ở làng địa ngục", route: "/sach" }]);
+  const queryBook = ref([
+    {
+      title: `Tết ở làng Địa Ngục`,
+      img: "https://i.pinimg.com/736x/fc/3f/b3/fc3fb338840cb246352cce4de11f2267.jpg",
+      author: "Thảo Trang",
+      category: "Trinh thám - Kinh dị",
+      Description: ` Năm đó, tại một ngôi làng xa xôi trên một ngọn núi hoang vu, người ta đón Tết trong sự kinh hãi tột độ, hoài nghi đau đáu và giận dữ khôn cùng trước sự ập tới của những bi kich tàn khốc.Ngôi làng ấy vốn dĩ không có tên, nhưng những người nơi đây mặc định chốn này là địa ngục. Dân trong làng không ai dám tự ý băng rừng thoát khỏi làng, càng không biết thế giới bên ngoài rộng lớn như thế nào, bởi lẽ họ sợ người khác sẽ biết rằng bản thân mình vốn là hậu duệ của băng cướp khét tiếng ở truông nhà Hồ dưới thời chúa Nguyễn ở Đàng Trong.\nVào một đêm cuối năm rét buốt, ông Thập – người duy nhất có thể ra khỏi làng – được báo mộng bởi một âm hồn mặc quan phục màu đỏ rực. Làng Địa Ngục sắp gặp họa lớn!Thành danh bằng những tác phẩm văn học kinh dị đậm chất Việt Nam được phát hành qua mạng, lần này tác giả Thảo Trang tiếp tục mang đến một câu chuyện hấp dẫn, mở ra một thế giới huyền bí với những sinh vật, thế lực siêu linh mà người đọc không bao giờ hết hứng thú, để lại những dư âm không phai khi gấp sách lại.Tết ở làng Địa Ngục  là một trong những tác phẩm kinh dị siêu linh đậm chất Việt Nam vô cùng ăn khách của tác giả Thảo Trang. \nTác phẩm đưa người đọc về một thời xa xưa, với bối cảnh là một ngôi làng xa xôi trên ngọn núi hoang vu. Ở đó, người ta đón tết trong sự kinh hãi tột độ, hoài nghi đau đáu và giận dữ khôn cùng trước sự ập tới của những bi kịch tàn khốc.`,
+    },
+  ]);
+  const showFullContent = ref(false);
+  const limitedContent = computed(() => {
+    const maxLength = 500;
+    const content = queryBook.value[0]?.Description;
+    if (content && content.length > maxLength) {
+      return content.slice(0, maxLength) + "...";
+    }
+    return content; // Return full content if within or equal to 150 characters
+  });
 
 const user = ref([
   {
@@ -118,7 +119,11 @@ var years = Math.floor(months / 12);
 
 <template>
   <!-- NAVBAR -->
-  <Breadcrumb :home="home" :model="items" class="navbar">
+  <Breadcrumb
+    :home="home"
+    :model="items"
+    class="navbar"
+  >
     <template #item="{ item, props }">
       <router-link
         v-if="item.route"
@@ -126,13 +131,25 @@ var years = Math.floor(months / 12);
         :to="item.route"
         custom
       >
-        <a :href="href" v-bind="props.action" @click="navigate">
-          <span :class="[item.icon, 'text-color']" style="color: black" />&nbsp;
+        <a
+          :href="href"
+          v-bind="props.action"
+          @click="navigate"
+        >
+          <span
+            :class="[item.icon, 'text-color']"
+            style="color: black"
+          />&nbsp;
           <span style="color: black; font-weight: bold">{{ item.label }} </span>
         </a>
       </router-link>
-      <a v-else :href="item.url" :target="item.target" v-bind="props.action">
-        <span class="text-color font-bold">{{ item.label }}</span>
+      <a
+        v-else
+        :href="item.url"
+        :target="item.target"
+        v-bind="props.action"
+      >
+        <span class="font-bold text-color">{{ item.label }}</span>
       </a>
     </template>
   </Breadcrumb>
@@ -142,7 +159,7 @@ var years = Math.floor(months / 12);
     <div class="flex flex-col">
       <div class="flex flex-row">
         <div class="basis-1/3">
-          <div class="mr-5 flex-col">
+          <div class="flex-col mr-5">
             <img
               class="rounded-[15px]"
               width="359px"
@@ -150,9 +167,9 @@ var years = Math.floor(months / 12);
               :src="queryBook[0].img"
             />
           </div>
-          <div class="ml-10 mt-5">
+          <div class="mt-5 ml-10">
             <Button
-              class="rounded-full mr-5"
+              class="mr-5 rounded-full"
               icon="pi pi-play-circle"
               label="Đọc sách"
             ></Button>
@@ -167,14 +184,23 @@ var years = Math.floor(months / 12);
           <div class="flex justify-center">
             <i class="tt-lng">{{ queryBook[0].title }}</i>
           </div>
-          <div class="rate flex justify-center">
+          <div class="flex justify-center rate">
             <i>{{ value }}.0</i>&nbsp;
-            <Rating v-model="value" :cancel="false">
+            <Rating
+              v-model="value"
+              :cancel="false"
+            >
               <template #onicon>
-                <icon class="pi pi-star-fill" style="color: gold"></icon>
+                <icon
+                  class="pi pi-star-fill"
+                  style="color: gold"
+                ></icon>
               </template>
               <template #officon>
-                <icon class="pi pi-star" style="color: gold"></icon>
+                <icon
+                  class="pi pi-star"
+                  style="color: gold"
+                ></icon>
               </template>
             </Rating>
           </div>
@@ -189,7 +215,7 @@ var years = Math.floor(months / 12);
               <div>
                 <p class="mt-3">
                   <icon class="pi pi-chevron-circle-right" />&nbsp;<span
-                    class="font-bold mr-5"
+                    class="mr-5 font-bold"
                     >Tác giả:
                   </span>
                   <icon class="pi pi-user" />
@@ -198,7 +224,7 @@ var years = Math.floor(months / 12);
 
                 <p class="mt-2 mb-5">
                   <icon class="pi pi-chevron-circle-right" />&nbsp;<span
-                    class="font-bold mr-5"
+                    class="mr-5 font-bold"
                     >Thể loại
                   </span>
                   <icon class="pi pi-hashtag" />
@@ -207,18 +233,28 @@ var years = Math.floor(months / 12);
               </div>
 
               <!-- mô tả -->
-              <div class="description mx-3">
-                <p v-if="showFullContent" class="formatted-content">
+              <div class="mx-3 description">
+                <p
+                  v-if="showFullContent"
+                  class="formatted-content"
+                >
                   {{ queryBook[0].Description }}
                 </p>
-                <pre v-else class="formatted-content">{{ limitedContent }}</pre>
+                <pre
+                  v-else
+                  class="formatted-content"
+                  >{{ limitedContent }}</pre
+                >
                 <a @click="showFullContent = !showFullContent">
                   {{ showFullContent ? "Rút gọn " : "Xem thêm" }}
                   <i
                     v-if="showFullContent"
-                    class="pi pi-chevron-up mt-1 ml-2"
+                    class="mt-1 ml-2 pi pi-chevron-up"
                   ></i>
-                  <i v-else class="pi pi-chevron-down mt-1 ml-2"></i>
+                  <i
+                    v-else
+                    class="mt-1 ml-2 pi pi-chevron-down"
+                  ></i>
                 </a>
               </div>
             </Fieldset>
