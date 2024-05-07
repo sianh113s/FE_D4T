@@ -15,3 +15,11 @@ export const useConditionStore = defineStore("condition", {
     },
   },
 });
+
+export const useCoinsStore = defineStore("coins", {
+  state: () => ({
+    coins: 0,
+  }),
+  getters: {},
+  actions: {},
+});

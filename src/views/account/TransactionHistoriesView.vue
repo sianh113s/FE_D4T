@@ -5,12 +5,15 @@
   import { onMounted, ref } from "vue";
   import { filter } from "@/store/account.js";
   import http from "@/api/http-common";
+  import { useCoinsStore } from "@/store";
 
   const s = filter();
 
   const num = ref(0);
 
   // Call API
+
+  const store = useCoinsStore();
 
   const transactionsDataList = ref([]);
   const transactionsDataTotal = ref(0);
@@ -31,6 +34,8 @@
       });
 
       transactionsDataTotal.value = response.data.metadata.total;
+
+      store.coins = response.data.metadata.coins;
     } catch (error) {
       console.log("error :>> ", error);
     }
