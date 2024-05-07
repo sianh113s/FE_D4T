@@ -4,36 +4,28 @@
   import { useToast } from "primevue/usetoast";
   import router from "@/router";
   import { useConditionStore } from "@/store";
+  import showNotification from "../../utils/showNotification.js";
 
   const store = useConditionStore();
-
   const toast = useToast();
+
   const formData = ref({
     username: "",
     password: "",
   });
-
-  const showNotification = (severity, summary, detail) => {
-    toast.add({
-      severity,
-      summary,
-      detail,
-      life: 2000,
-    });
-  };
 
   const loginUser = async (urlApi, data) => {
     try {
       const response = await http.post(urlApi, data);
       localStorage.setItem(
         "accessToken",
-        response.data.metadata.tokens.accessToken
+        JSON.stringify(response.data.metadata.tokens.accessToken)
       );
       localStorage.setItem(
         "refreshToken",
-        response.data.metadata.tokens.refreshToken
+        JSON.stringify(response.data.metadata.tokens.refreshToken)
       );
-      showNotification("success", "Thông báo", response.data.message);
+      showNotification(toast, "success", "Thông báo", response.data.message);
 
       //
       store.setLoggedIn();
@@ -43,7 +35,12 @@
         router.push({ path: "/" });
       }, 2000);
     } catch (error) {
-      showNotification("error", "Rất tiếc!", error?.response?.data?.message);
+      showNotification(
+        toast,
+        "error",
+        "Rất tiếc!",
+        error?.response?.data?.message
+      );
     }
   };
 

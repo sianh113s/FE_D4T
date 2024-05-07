@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 export const useConditionStore = defineStore("condition", {
   state: () => ({
     isHiddenHeaderDropdown: true,
-    isLoggedIn: localStorage.getItem("isLoggedIn") || false,
+    isLoggedIn: JSON.parse(localStorage.getItem("isLoggedIn")) || false,
   }),
   getters: {},
   actions: {
