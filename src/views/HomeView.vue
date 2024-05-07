@@ -2,9 +2,14 @@
   import HeaderBeforeLogin from "@/components/default/HeaderBeforeLogin.vue";
   import HeaderAfterLogin from "@/components/default/HeaderAfterLogin.vue";
   import FooterApp from "@/components/default/FooterApp.vue";
-  import { useConditionStore } from "@/store";
+  import { useCoinsStore, useConditionStore } from "@/store";
+  import { onMounted } from "vue";
 
   const store = useConditionStore();
+
+  const coinsStore = useCoinsStore();
+
+  onMounted(coinsStore.setCoins);
 </script>
 
 <template>

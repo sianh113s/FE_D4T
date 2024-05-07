@@ -1,3 +1,4 @@
+import http from "@/api/http-common";
 import { defineStore } from "pinia";
 
 export const useConditionStore = defineStore("condition", {
@@ -21,5 +22,12 @@ export const useCoinsStore = defineStore("coins", {
     coins: 0,
   }),
   getters: {},
-  actions: {},
+  actions: {
+    async setCoins() {
+      const response = await http.get(
+        "http://localhost:3000/v1/api/transaction/coins"
+      );
+      this.coins = response.data.metadata?.coins;
+    },
+  },
 });
