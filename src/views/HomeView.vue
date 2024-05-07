@@ -3,6 +3,7 @@ import HeaderBeforeLogin from "@/components/default/HeaderBeforeLogin.vue";
 import HeaderAfterLogin from "@/components/default/HeaderAfterLogin.vue";
 import FooterApp from "@/components/default/FooterApp.vue";
 import MainBanner from "@/components/landingPageComponents/MainBanner.vue";
+import HotBooks from "@/components/landingPageComponents/HotBooks.vue";
 import NewBooks from "@/components/landingPageComponents/NewBooks.vue";
 
 import {
@@ -13,12 +14,19 @@ import {
 
 <template>
     <HeaderBeforeLogin></HeaderBeforeLogin>
-
-    <!-- <NewBooks></NewBooks> -->
-    <HeaderAfterLogin></HeaderAfterLogin>
-    <h1>This is Home View</h1>
-    <RouterLink to="/about">Go to About</RouterLink>
-    <FooterApp></FooterApp>
+    <!-- <HeaderAfterLogin></HeaderAfterLogin> -->
+    <div>
+        <MainBanner></MainBanner>
+        <div class="flex flex-col justify-center items-center h-auto">
+            <HotBooks></HotBooks>
+        </div>
+        <div class="flex flex-col justify-center items-center h-auto">
+            <NewBooks></NewBooks>
+        </div>
+    </div>
+    <div>
+        <FooterApp></FooterApp>
+    </div>
 </template>
 
 <style scoped></style>

@@ -2,33 +2,37 @@
 import { ref } from 'vue';
 
 const isKindBookVisible = ref(false);
+const isOverlayVisible = ref(false); // New ref
 
 const showKindBook = () => {
   isKindBookVisible.value = true;
+  isOverlayVisible.value = true; // Show overlay when mega menu is focused
 };
 
 const hideKindBook = () => {
   isKindBookVisible.value = false;
+  isOverlayVisible.value = false; // Hide overlay when mega menu is not focused
 };
 </script>
 
 <template>
   <div>
-    <header class="">
+    <header class="w-screen">
       <div class="h-[80px] flex justify-between px-6 header__inner relative">
         <div class="left">
           <img class="w-[167px] h-[48px]" src="../../assets/imgs/logo-dai.png" alt="Logo" />
         </div>
         <div class="middle">
           <ul class="flex gap-[50px] items-center">
-            <li class="kind p-4 cursor-pointer" @mouseenter="showKindBook" @mouseleave="hideKindBook">
-              <span>Thể loại</span>
+            <li class=" kind p-4 cursor-pointer shadow-inner" @mouseenter="showKindBook" @mouseleave="hideKindBook">
+              <span class="mr-1">Thể loại</span>
               <span><i class="font-thin pi pi-chevron-down" style="color: black"></i></span>
-              <div class="kind-book absolute  border top-[80px] h-[400px] flex flex-col gap-[30px]" v-show="isKindBookVisible">
+              <div class="kind-book absolute z-40 border top-[80px] h-[310px] flex flex-col gap-[30px]"
+                v-show="isKindBookVisible">
                 <div class="kind-book-row w-[870px] relative flex justify-around gap-[50]">
                   <div class="kind-book-row-item w-[200px]">
                     <router-link>
-                      <span class="title text-[21px] font-medium">Văn học</span>
+                      <span class="title text-[18px] font-medium">Văn học</span>
                     </router-link>
                     <ul class="subKindBook">
                       <li><router-link>
@@ -37,12 +41,12 @@ const hideKindBook = () => {
                       <li><router-link>
                           <p>Ngôn tình</p>
                         </router-link> </li>
-                      <li><router-link>Xem tất cả</router-link> </li>
+                      <p class="kind-link"><router-link>Xem tất cả</router-link> </p>
                     </ul>
                   </div>
                   <div class="kind-book-row-item w-[200px]">
                     <router-link>
-                      <span class="title text-[21px] font-medium">Kinh tế</span>
+                      <span class="title text-[18px] font-medium">Kinh tế</span>
                     </router-link>
                     <ul class="subKindBook">
                       <li><router-link>
@@ -51,12 +55,12 @@ const hideKindBook = () => {
                       <li><router-link>
                           <p>Marketing bán hàng</p>
                         </router-link> </li>
-                      <li><router-link> Xem tất cả</router-link> </li>
+                      <p class="kind-link"><router-link>Xem tất cả</router-link> </p>
                     </ul>
                   </div>
                   <div class="kind-book-row-item w-[200px]">
                     <router-link>
-                      <span class="title text-[21px] font-medium">Tâm lý - Kỹ năng sống</span>
+                      <span class="title text-[18px] font-medium">Tâm lý - Kỹ năng sống</span>
                     </router-link>
                     <ul class="subKindBook">
                       <li><router-link>
@@ -65,48 +69,48 @@ const hideKindBook = () => {
                       <li><router-link>
                           <p>Kỹ năng sống</p>
                         </router-link> </li>
-                      <li><router-link>Xem tất cả</router-link> </li>
+                      <p class="kind-link"><router-link>Xem tất cả</router-link> </p>
                     </ul>
                   </div>
                 </div>
                 <div class="kind-book-row w-[870px] relative flex justify-around gap-[50]">
                   <div class="kind-book-row-item w-[200px]">
                     <router-link>
-                      <span class="title text-[21px] font-medium">Sách thiếu nhi</span>
+                      <span class="title text-[18px] font-medium">Sách thiếu nhi</span>
                     </router-link>
                     <ul class="subKindBook">
                       <li><router-link>Manga - Comic</router-link> </li>
                       <li><router-link>Kiến thức bách khoa</router-link> </li>
-                      <li><router-link>Xem tất cả</router-link> </li>
+                      <p class="kind-link"><router-link>Xem tất cả</router-link> </p>
                     </ul>
                   </div>
                   <div class="kind-book-row-item w-[200px]">
                     <router-link>
-                      <span class="title text-[21px] font-medium">Tiêu sử hồi ký</span>
+                      <span class="title text-[18px] font-medium">Tiêu sử hồi ký</span>
                     </router-link>
                     <ul class="subKindBook">
                       <li><router-link>Câu chuyện cuộc đời</router-link> </li>
                       <li><router-link>Nghệ thuật - Giải trí</router-link> </li>
-                      <li><router-link>Xem tất cả</router-link> </li>
+                      <p class="kind-link"><router-link>Xem tất cả</router-link> </p>
                     </ul>
                   </div>
                   <div class="kind-book-row-item w-[200px]">
                     <router-link>
-                      <span class="title text-[21px] font-medium">Sách học ngoại ngữ</span>
+                      <span class="title text-[18px] font-medium">Sách học ngoại ngữ</span>
                     </router-link>
                     <ul class="subKindBook">
                       <li><router-link>Tiếng Anh</router-link> </li>
                       <li><router-link>Tiếng Nhật</router-link> </li>
-                      <li><router-link>Xem tất cả</router-link> </li>
+                      <p class="kind-link"><router-link>Xem tất cả</router-link> </p>
                     </ul>
                   </div>
                 </div>
               </div>
             </li>
 
-            <li class="p-4 cursor-pointer">Sách mới nhất</li>
-            <li class="p-4 cursor-pointer">Hot</li>
-            <li class="p-4 cursor-pointer">Nạp sồi</li>
+            <li class="menu-hover p-4 cursor-pointer">Sách mới nhất</li>
+            <li class="menu-hover p-4 cursor-pointer">Hot</li>
+            <li class="menu-hover p-4 cursor-pointer">Nạp sồi</li>
 
             <li>
               <div class="flex flex-wrap gap-3 card justify-content-center">
@@ -118,6 +122,7 @@ const hideKindBook = () => {
             </li>
           </ul>
         </div>
+        
         <div class="items-center gap-3 right">
           <router-link to="/signup">
             <Button class="rounded-[50px] cursor-pointer" label="Đăng ký" severity="secondary" outlined />
@@ -130,16 +135,52 @@ const hideKindBook = () => {
         </div>
       </div>
     </header>
+    <div v-show="isOverlayVisible" class="overlay"></div>
   </div>
 </template>
 
 <style scoped>
+header.kind:hover,
+.mega-menu:hover {
+  background-color: #fff;
+}
+
+.overlay {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 80px);
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+header {
+  position: relative;
+  z-index: 20;
+}
+
+.menu-hover:hover {
+  color: #117554;
+  transition: 0.3s ease;
+}
+
 .kind-book {
   visibility: hidden;
   padding: 24px 15px 20px;
   border-radius: 15px;
   background-color: #fff;
   transition: visibility 0.2s;
+}
+
+.kind {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.kind>span:hover {
+  color: #117554;
+  transition: 0.3s ease;
 }
 
 .kind>span:nth-child(1) {
@@ -156,14 +197,19 @@ const hideKindBook = () => {
   transition: visibility 0.2s linear;
 }
 
+.kind-link {
+  font-size: 13px;
+  color: #0da371;
+}
+
 .subKindBook {
   font-weight: 310;
+  font-size: 15px;
 }
 
-.subKindBook>li:nth-child(3) {
-  color: #2489F4;
+.subKindBook>li:hover {
+  color: rgb(174, 12, 12);
 }
-
 
 .left,
 .middle,
