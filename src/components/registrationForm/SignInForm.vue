@@ -39,7 +39,7 @@
 
       setTimeout(() => {
         router.push({ path: "/" });
-      }, 2000);
+      }, 500);
     } catch (error) {
       showNotification(
         toast,

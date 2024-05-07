@@ -1,6 +1,6 @@
 <script setup>
   import { RouterLink } from "vue-router";
-  import { useConditionStore } from "@/store";
+  import { useCoinsStore, useConditionStore } from "@/store";
   import { ref } from "vue";
   import showNotification from "@/utils/showNotification.js";
   import http from "@/api/http-common.js";
@@ -11,6 +11,8 @@
   const searchValue = ref("");
 
   const store = useConditionStore();
+
+  const useCoins = useCoinsStore();
 
   const handlleLogout = async () => {
     let urlApi = "/access/logout";
@@ -36,6 +38,7 @@
 
       setTimeout(() => {
         router.push({ path: "/" });
+        router.go();
       }, 1000);
     } catch (error) {
       console.log("error :>> ", error);
@@ -136,7 +139,9 @@
                       class="pi pi-credit-card"
                       style="color: #f3c201"
                     ></i
-                    ><span class="text-[#f3c201] font-semibold">10000</span>
+                    ><span class="text-[#f3c201] font-semibold">{{
+                      useCoins.coins
+                    }}</span>
                   </div>
                 </div>
                 <div class="t-right">
@@ -191,15 +196,7 @@
                         />
                       </li>
                     </RouterLink>
-                    <li class="flex items-center gap-3">
-                      <Button
-                        class="w-full"
-                        label="Lịch sử giao dịch"
-                        severity="secondary"
-                        icon="pi pi-list"
-                        text
-                      />
-                    </li>
+
                     <li class="flex items-center gap-3">
                       <Button
                         class="w-full"
