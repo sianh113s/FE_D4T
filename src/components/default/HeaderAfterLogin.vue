@@ -1,15 +1,58 @@
 <script setup>
   import { RouterLink } from "vue-router";
-
   import { useConditionStore } from "@/store";
+  import { ref } from "vue";
+  import showNotification from "@/utils/showNotification.js";
+  import http from "@/api/http-common.js";
+  import { useToast } from "primevue/usetoast";
+  import router from "@/router";
+
+  const toast = useToast();
+  const searchValue = ref("");
 
   const store = useConditionStore();
 
-  
+  const handlleLogout = async () => {
+    let urlApi = "/access/logout";
+    console.log("urlApi :>> ", urlApi);
+    let requestData = {
+      accessToken: localStorage.getItem("accessToken") || "",
+      refreshToken: localStorage.getItem("refreshToken") || "",
+    };
+
+    try {
+      const response = await http.post(urlApi, requestData);
+
+      showNotification(
+        toast,
+        "success",
+        "Thông báo",
+        response.data.message,
+        1000
+      );
+      store.isLoggedIn = false;
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      localStorage.removeItem("isLoggedIn");
+
+      setTimeout(() => {
+        router.push({ path: "/" });
+      }, 1000);
+    } catch (error) {
+      console.log("error :>> ", error);
+      showNotification(
+        toast,
+        "error",
+        "Rất tiếc!",
+        error?.response?.data?.message
+      );
+    }
+  };
 </script>
 
 <template>
   <div>
+    <Toast />
     <header class="">
       <div class="h-[80px] flex justify-between px-6 header__inner">
         <div class="left">
@@ -36,10 +79,10 @@
             <li>
               <div class="flex flex-wrap gap-3 card justify-content-center">
                 <IconField iconPosition="left">
-                  <InputIcon class="pi pi-search"> </InputIcon>
+                  <InputIcon class="pi pi-search" />
                   <InputText
                     class="rounded-[50px]"
-                    v-model="value1"
+                    v-model="searchValue"
                     placeholder="Search"
                   />
                 </IconField>
@@ -115,7 +158,7 @@
               <div class="tooltip-bottom">
                 <div class="p-[15px]">
                   <ul>
-                    <RouterLink :to="{name: 'profile' }">
+                    <RouterLink :to="{ name: 'profile' }">
                       <li class="flex items-center gap-3">
                         <Button
                           class="w-full"
@@ -126,7 +169,7 @@
                         />
                       </li>
                     </RouterLink>
-                    <RouterLink :to="{name: 'bookcase' }">
+                    <RouterLink :to="{ name: 'bookcase' }">
                       <li class="flex items-center gap-3">
                         <Button
                           class="w-full"
@@ -137,7 +180,7 @@
                         />
                       </li>
                     </RouterLink>
-                    <RouterLink :to="{name: 'transaction-histories' }">
+                    <RouterLink :to="{ name: 'transaction-histories' }">
                       <li class="flex items-center gap-3">
                         <Button
                           class="w-full"
@@ -151,6 +194,15 @@
                     <li class="flex items-center gap-3">
                       <Button
                         class="w-full"
+                        label="Lịch sử giao dịch"
+                        severity="secondary"
+                        icon="pi pi-list"
+                        text
+                      />
+                    </li>
+                    <li class="flex items-center gap-3">
+                      <Button
+                        class="w-full"
                         label="Hỗ trợ khách hàng"
                         severity="secondary"
                         icon="pi pi-headphones"
@@ -158,17 +210,16 @@
                         @click="modal = true"
                       />
                     </li>
-                    <RouterLink>
-                      <li class="flex items-center gap-3">
-                        <Button
+                    <li class="flex items-center gap-3">
+                      <Button
+                        @click="handlleLogout"
                         class="w-full"
                         label="Đăng xuất"
                         severity="secondary"
                         icon="pi pi-sign-out"
                         text
-                        />
-                      </li>
-                    </RouterLink>
+                      />
+                    </li>
                   </ul>
                 </div>
               </div>
