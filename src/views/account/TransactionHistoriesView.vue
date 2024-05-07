@@ -2,59 +2,46 @@
   import HeaderAfterLogin from "@/components/default/HeaderAfterLogin.vue";
   import FooterApp from "@/components/default/FooterApp.vue";
   import Sidebar from "@/components/default/Sidebar.vue";
-
-  import { ref } from "vue";
-
+  import { onMounted, ref } from "vue";
   import { filter } from "@/store/account.js";
+  import http from "@/api/http-common";
+  import { useCoinsStore } from "@/store";
 
-  const s = filter(); 
+  const s = filter();
 
   const num = ref(0);
 
-  const transactions = ref([
-    {
-      transaction_type: '-1',
-      amount: '-7000',
-      date: '19/03/2024 11:12',
-    },
-    {
-      transaction_type: '1',
-      amount: '+5000',
-      date: '19/03/2024 11:12',
-    },
-  ]);
+  // Call API
 
-  const transaction_usage = ref([
-    {
-      amount: '-7000',
-      date: '19/03/2024 11:12',
-    },
-    {
-      amount: '-5000',
-      date: '19/03/2024 11:12',
-    },
-    {
-      amount: '-8000',
-      date: '19/03/2024 11:12',
-    },
-  ]);
+  const store = useCoinsStore();
 
-  const transaction_topup= [
-  {
-      amount: '+7000',
-      date: '19/03/2024 11:12',
-    },
-    {
-      amount: '+5000',
-      date: '19/03/2024 11:12',
-    },
-    {
-      amount: '+8000',
-      date: '19/03/2024 11:12',
-    },
-  ];
+  const transactionsDataList = ref([]);
+  const transactionsDataTotal = ref(0);
 
+  const transactionsDataUsage = ref([]);
+  const transactionsDataTopUp = ref([]);
 
+  const callAPI = async () => {
+    try {
+      const response = await http.post("/transaction/list", {});
+
+      transactionsDataList.value = response.data.metadata.transactions;
+
+      transactionsDataList.value.forEach((item) => {
+        item.TransactionType === "NAP_XU"
+          ? transactionsDataTopUp.value.push(item)
+          : transactionsDataUsage.value.push(item);
+      });
+
+      transactionsDataTotal.value = response.data.metadata.total;
+
+      store.coins = response.data.metadata.coins;
+    } catch (error) {
+      console.log("error :>> ", error);
+    }
+  };
+
+  onMounted(callAPI);
 </script>
 
 <template>
@@ -62,7 +49,7 @@
   <div class="flex">
     <Sidebar></Sidebar>
     <div class="m-[12px] top-[80px] flex-grow">
-      <div class="border-b p-5">
+      <div class="p-5 border-b">
         <label class="text-2xl font-semibold">Lịch sử giao dịch</label>
         <div
           @click="s.toggleIsHiddenFilter"
@@ -113,37 +100,51 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Lọc mới nhất -->
       <template v-if="num == 0">
         <div
-          class="h-[90px] w-[540px] self-stretch rounded-[20px] bg-gray-100 
-          flex flex-row items-end justify-between m-5 px-4 py-1.5 gap-[20px] z-[1]"
-          v-for="transaction in transactions"
+          class="h-[90px] w-[540px] self-stretch rounded-[20px] bg-gray-100 flex flex-row items-end justify-between m-5 px-4 py-1.5 gap-[20px] z-[1]"
+          v-for="(transactionsData, index) in transactionsDataList"
+          :key="index"
         >
           <div class="flex flex-col items-start justify-start gap-[6px]">
-            <div class="flex flex-row items-end justify-start gap-[10px] pb-[8px]">
+            <div
+              class="flex flex-row items-end justify-start gap-[10px] pb-[8px]"
+            >
               <img
                 class="h-[30px] w-[30px] object-cover z-[1]"
                 alt=""
                 src="@/assets/imgs/bonussoi.png"
               />
-              <p class="font-semibold text-lg z-[1]">
-                {{transaction.transaction_type}}
+              <p class="font-semibold p-test text-lg z-[1]">
+                {{
+                  transactionsData.TransactionType === "NAP_XU"
+                    ? "Nạp sồi"
+                    : "Sử dụng sồi"
+                }}
               </p>
             </div>
             <div class="z-[1]">
-              <p class="mr-[10px] mb-[8px]">{{transaction.date}}</p>
+              <p class="mr-[10px] mb-[8px]">
+                {{ transactionsData.TransactionDate.split("T")[0] }}
+              </p>
             </div>
           </div>
           <div
-            class="flex flex-col items-start justify-end pb-6 text-right text-xl"
+            :class="{
+              'text-emerald-500': transactionsData.TransactionType === 'NAP_XU',
+              'text-rose-500':
+                transactionsData.TransactionType === 'THANH_TOAN',
+            }"
+            class="flex flex-col items-start justify-end pb-6 text-xl text-right text-emerald-500"
           >
             <div class="flex flex-row items-end justify-start gap-[10px]">
-              <p
-                class="font-semibold inline-block z-[1]"
-              >
-                {{transaction.amount}}
+              <p class="font-semibold inline-block z-[1]">
+                <span>{{
+                  transactionsData.TransactionType === "NAP_XU" ? "+" : "-"
+                }}</span
+                >{{ transactionsData.TransactionAmount }}
               </p>
               <img
                 class="h-[30px] w-[30px] object-cover z-[1]"
@@ -158,33 +159,33 @@
       <!-- Lọc nạp sồi -->
       <template v-else-if="num == 1">
         <div
-          class="h-[90px] w-[540px] self-stretch rounded-[20px] bg-gray-100 
-          flex flex-row items-end justify-between m-5 px-4 py-1.5 gap-[20px] z-[1]"
-          v-for="ttransaction in transaction_topup"
+          class="h-[90px] w-[540px] self-stretch rounded-[20px] bg-gray-100 flex flex-row items-end justify-between m-5 px-4 py-1.5 gap-[20px] z-[1]"
+          v-for="(ttransaction, index) in transactionsDataTopUp"
+          :key="index"
         >
           <div class="flex flex-col items-start justify-start gap-[6px]">
-            <div class="flex flex-row items-end justify-start gap-[10px] pb-[8px]">
+            <div
+              class="flex flex-row items-end justify-start gap-[10px] pb-[8px]"
+            >
               <img
                 class="h-[30px] w-[30px] object-cover z-[1]"
                 alt=""
                 src="@/assets/imgs/bonussoi.png"
               />
-              <p class="font-semibold text-lg z-[1]">
-                Nạp sồi vào tài khoản
-              </p>
+              <p class="font-semibold text-lg z-[1]">Nạp sồi vào tài khoản</p>
             </div>
             <div class="z-[1]">
-              <p class="mr-[10px] mb-[8px]">{{ttransaction.date}}</p>
+              <p class="mr-[10px] mb-[8px]">
+                {{ ttransaction.TransactionDate.split("T")[0] }}
+              </p>
             </div>
           </div>
           <div
-            class="flex flex-col items-start justify-end pb-6 text-right text-xl text-emerald-500"
+            class="flex flex-col items-start justify-end pb-6 text-xl text-right text-emerald-500"
           >
             <div class="flex flex-row items-end justify-start gap-[10px]">
-              <p
-                class="font-semibold inline-block z-[1]"
-              >
-                {{ttransaction.amount}}
+              <p class="font-semibold inline-block z-[1]">
+                +{{ ttransaction.TransactionAmount }}
               </p>
               <img
                 class="h-[30px] w-[30px] object-cover z-[1]"
@@ -199,33 +200,33 @@
       <!-- Lọc sử dụng sồi -->
       <template v-else-if="num == 2">
         <div
-          class="h-[90px] w-[540px] self-stretch rounded-[20px] bg-gray-100 
-          flex flex-row items-end justify-between m-5 px-4 py-1.5 gap-[20px] z-[1]"
-          v-for="utransaction in transaction_usage"
+          class="h-[90px] w-[540px] self-stretch rounded-[20px] bg-gray-100 flex flex-row items-end justify-between m-5 px-4 py-1.5 gap-[20px] z-[1]"
+          v-for="(utransaction, index) in transactionsDataUsage"
+          :key="index"
         >
           <div class="flex flex-col items-start justify-start gap-[6px]">
-            <div class="flex flex-row items-end justify-start gap-[10px] pb-[8px]">
+            <div
+              class="flex flex-row items-end justify-start gap-[10px] pb-[8px]"
+            >
               <img
                 class="h-[30px] w-[30px] object-cover z-[1]"
                 alt=""
                 src="@/assets/imgs/bonussoi.png"
               />
-              <p class="font-semibold text-lg z-[1]">
-                Sử dụng sồi
-              </p>
+              <p class="font-semibold text-lg z-[1]">Sử dụng sồi</p>
             </div>
             <div class="z-[1]">
-              <p class="mr-[10px] mb-[8px]">{{utransaction.date}}</p>
+              <p class="mr-[10px] mb-[8px]">
+                {{ utransaction.TransactionDate.split("T")[0] }}
+              </p>
             </div>
           </div>
           <div
-            class="flex flex-col items-start justify-end pb-6 text-right text-xl text-rose-500"
+            class="flex flex-col items-start justify-end pb-6 text-xl text-right text-rose-500"
           >
             <div class="flex flex-row items-end justify-start gap-[10px]">
-              <p
-                class="font-semibold inline-block z-[1]"
-              >
-                {{utransaction.amount}}
+              <p class="font-semibold inline-block z-[1]">
+                -{{ utransaction.TransactionAmount }}
               </p>
               <img
                 class="h-[30px] w-[30px] object-cover z-[1]"
@@ -238,7 +239,7 @@
       </template>
     </div>
   </div>
-  
+
   <FooterApp></FooterApp>
 </template>
 

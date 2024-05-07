@@ -2,6 +2,7 @@
   import { RouterLink, RouterView } from "vue-router";
   import { ref } from "vue";
   import { onClickOutside } from "@vueuse/core";
+  import { useCoinsStore } from "@/store";
 
   const modal = ref(false);
   const modalRef = ref(null);
@@ -11,24 +12,23 @@
     modal.value = false;
   });
 
+  const store = useCoinsStore();
 </script>
 
 <template>
   <nav class="sidebar flex-none w-[340px]">
-    <div class="tool-menu rounded-md px-5 h-[calc(100vh-80px)] my-[12px] top-[100px] bg-[#fff]">
-      <div
-        class="flex items-center tooltip-top p-[15px] justify-between"
-      >
+    <div
+      class="tool-menu rounded-md px-5 h-[calc(100vh-80px)] my-[12px] top-[100px] bg-[#fff]"
+    >
+      <div class="flex items-center tooltip-top p-[15px] justify-between">
         <div class="flex flex-col t-left">
-          <span class="text-xl font-bold text-[#334155]"
-            >Dương Dũng</span
-          >
+          <span class="text-xl font-bold text-[#334155]">Dương Dũng</span>
           <div class="flex items-center gap-3 pt-2">
             <i
               class="pi pi-credit-card"
               style="color: #f3c201"
             ></i
-            ><span class="text-[#f3c201] font-semibold">10000</span>
+            ><span class="text-[#f3c201] font-semibold">{{ store.coins }}</span>
           </div>
         </div>
         <div class="t-right">
@@ -52,7 +52,7 @@
       <div class="tooltip-bottom">
         <div class="px-[20px]">
           <ul>
-            <RouterLink :to="{name: 'profile' }">
+            <RouterLink :to="{ name: 'profile' }">
               <li class="flex items-center gap-3">
                 <Button
                   class="w-full"
@@ -63,7 +63,7 @@
                 />
               </li>
             </RouterLink>
-            <RouterLink :to="{name: 'bookcase' }">
+            <RouterLink :to="{ name: 'bookcase' }">
               <li class="flex items-center gap-3">
                 <Button
                   class="w-full"
@@ -74,7 +74,7 @@
                 />
               </li>
             </RouterLink>
-            <RouterLink :to="{name: 'transaction-histories' }">
+            <RouterLink :to="{ name: 'transaction-histories' }">
               <li class="flex items-center gap-3">
                 <Button
                   class="w-full"
@@ -95,7 +95,6 @@
                 @click="modal = true"
               />
             </li>
-            
           </ul>
         </div>
       </div>
@@ -106,17 +105,43 @@
     ref="modalRef"
     class="modal"
   >
-    <div class="inner bg-white">
-      <p class="text-2xl p-3 font-semibold text-center">Bạn cần hỗ trợ</p>
-      <p class="text-base text-center">Liên hệ với chúng tôi thông qua các kênh hỗ trợ</p>
-      <div class="text-center my-2">
-        <Button class="rounded-3xl w-[140px] text-stone-900" icon="pi pi-telegram" label="Telegram" severity="secondary" outlined />
-        <Button class="rounded-3xl ml-10 w-[140px] text-stone-900" icon="pi pi-comment" label="Zalo" severity="secondary" outlined />
+    <div class="bg-white inner">
+      <p class="p-3 text-2xl font-semibold text-center">Bạn cần hỗ trợ</p>
+      <p class="text-base text-center">
+        Liên hệ với chúng tôi thông qua các kênh hỗ trợ
+      </p>
+      <div class="my-2 text-center">
+        <Button
+          class="rounded-3xl w-[140px] text-stone-900"
+          icon="pi pi-telegram"
+          label="Telegram"
+          severity="secondary"
+          outlined
+        />
+        <Button
+          class="rounded-3xl ml-10 w-[140px] text-stone-900"
+          icon="pi pi-comment"
+          label="Zalo"
+          severity="secondary"
+          outlined
+        />
       </div>
       <p class="text-base text-center">Hoặc</p>
-      <div class="text-center my-2">
-        <Button class="rounded-3xl w-[320px] text-left text-stone-900" icon="pi pi-phone" label="0328 426 688" severity="secondary" outlined />
-        <Button class="rounded-3xl my-3 w-[320px] text-left text-stone-900" icon="pi pi-envelope" label="d4tbooks@gmail.com" severity="secondary" outlined />
+      <div class="my-2 text-center">
+        <Button
+          class="rounded-3xl w-[320px] text-left text-stone-900"
+          icon="pi pi-phone"
+          label="0328 426 688"
+          severity="secondary"
+          outlined
+        />
+        <Button
+          class="rounded-3xl my-3 w-[320px] text-left text-stone-900"
+          icon="pi pi-envelope"
+          label="d4tbooks@gmail.com"
+          severity="secondary"
+          outlined
+        />
       </div>
     </div>
   </div>
@@ -145,6 +170,4 @@
     border: 1px solid var(--vp-c-divider);
     box-shadow: 2px 2px 10px rgba(10, 10, 10, 0.1);
   }
-  
-
 </style>

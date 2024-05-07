@@ -10,9 +10,9 @@
   const store = useConditionStore();
 
   const formData = ref({
-    email: "duongvandung2k3@gmail.com",
-    fullName: "Dương Văn Dũng",
-    password: "123",
+    email: "",
+    fullName: "",
+    password: "",
   });
 
   const registerUser = async (urlApi, requestData) => {
