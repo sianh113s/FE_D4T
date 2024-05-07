@@ -8,7 +8,8 @@ const http = axios.create({
 });
 
 const addTokenToRequest = (config) => {
-  const token = localStorage.getItem("accessToken");
+  const token = JSON.parse(localStorage.getItem("accessToken"));
+
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }

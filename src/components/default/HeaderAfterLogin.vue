@@ -14,7 +14,6 @@
 
   const handlleLogout = async () => {
     let urlApi = "/access/logout";
-    console.log("urlApi :>> ", urlApi);
     let requestData = {
       accessToken: localStorage.getItem("accessToken") || "",
       refreshToken: localStorage.getItem("refreshToken") || "",
@@ -47,6 +46,7 @@
         error?.response?.data?.message
       );
     }
+    router.push({ path: "/" });
   };
 </script>
 

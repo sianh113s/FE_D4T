@@ -51,6 +51,15 @@ const router = createRouter({
       path: "/account/profile",
       name: "profile",
       component: () => import("../views/account/AccountProfileView.vue"),
+      beforeEnter: (to, from, next) => {
+        const conditionStore = useConditionStore();
+
+        if (!conditionStore.isLoggedIn) {
+          next({ name: "home" });
+        } else {
+          next();
+        }
+      },
     },
     {
       path: "/account/transaction-histories",
