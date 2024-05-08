@@ -2,10 +2,11 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import AdminDashboard from "../views/AdminView/AdminDashboard.vue";
 import { useConditionStore } from "../store/index.js";
+import NapView from "@/views/NapView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [ 
+  routes: [
     {
       path: "/signup",
       name: "signup",
@@ -75,6 +76,11 @@ const router = createRouter({
       path: "/sach",
       name: "sach",
       component: () => import("../views/BookDetail.vue"),
+    },
+    {
+      path: "/Nap",
+      name: "Nap",
+      component: NapView,
     },
   ],
 });
