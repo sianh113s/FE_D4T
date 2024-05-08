@@ -6,7 +6,16 @@
   import TabMenu from "primevue/tabmenu";
   import FileUpload from "primevue/fileupload";
   import { useToast } from "primevue/usetoast";
-  import { ref } from "vue";
+  import { onMounted, ref } from "vue";
+  import http from "@/api/http-common";
+  import deniedAccess from "../../utils/deniedAccess.js";
+  import {
+    convertDateStringToDateObject,
+    convertDateToUnixTimestamp,
+    convertUnixTimestampToDateString,
+  } from "../../utils/convertTime.js";
+  import showNotification from "@/utils/showNotification.js";
+  import router from "@/router/index.js";
 
   const toast = useToast();
 
@@ -18,8 +27,8 @@
       life: 2000,
     });
   };
-  const selectedTab = ref(1);
 
+  const selectedTab = ref(1);
   const check = ref(0);
 
   const items = ref([
@@ -31,14 +40,100 @@
     },
   ]);
 
-  const value_username = ref(null);
-  const value_id = ref(null);
-  const value_fullname = ref(null);
-  const value_birthdate = ref(null);
-  const value_gender = ref(null);
-  const value_email = ref("tructhanh2k3@gmail.com");
-  const value_pass = ref("123");
-  const value_phone = ref("0382055453");
+  //
+  let selectedGender = ref();
+
+  let genders = ref([
+    { name: "Nam", code: "0" },
+    { name: "Nữ", code: "1" },
+    { name: "Khác", code: "2" },
+  ]);
+
+  let birthday = ref();
+
+  // Get user info
+  const user = ref({});
+  const userBeforeUpdate = ref({});
+
+  const getData = async () => {
+    const username = localStorage.getItem("Username");
+    if (username) {
+      const urlApi = "/user/getByUsername";
+      const requestData = { Username: JSON.parse(username) };
+
+      try {
+        const response = await http.post(urlApi, requestData);
+
+        user.value = response.data.metadata.user;
+        userBeforeUpdate.value = response.data.metadata.user;
+        // console.log("Object.keys:: ", Object.keys(response.data.metadata.user));
+        // console.log("user :>> ", user.value);
+
+        selectedGender.value = genders.value.find(
+          (gender) => gender.name === user.value.Gender
+        );
+
+        birthday.value = convertDateStringToDateObject(user.value.Birthday);
+      } catch (error) {
+        // console.log("error :>> ", error?.response?.data);
+        console.log("error :>> ", error);
+        toast.add({
+          severity: "error",
+          summary: "Error",
+          detail: "Failed to fetch user info",
+          life: 2000,
+        });
+
+        // deniedAccess();
+      }
+    } else {
+      deniedAccess();
+    }
+  };
+
+  onMounted(getData);
+
+  const handleUpdate = async () => {
+    const dataToUpdate = {
+      username: user.value.Username,
+      FullName: user.value.FullName,
+      Gender: selectedGender.value.name,
+      Birthday: convertUnixTimestampToDateString(
+        convertDateToUnixTimestamp(birthday.value)
+      ),
+      phone: user.value.phone,
+    };
+
+    let urlApi = "/user/update";
+
+    try {
+      const response = await http.put(urlApi, dataToUpdate);
+      // console.log("response :>> ", response);
+
+      showNotification(toast, "success", "Thông báo", response.data.message);
+    } catch (error) {
+      // console.log("error :>> ", error);
+      showNotification(
+        toast,
+        "error",
+        "Rất tiếc!",
+        error?.response?.data?.message
+      );
+    }
+  };
+
+  const handCancel = () => {
+    user.value = { ...userBeforeUpdate.value };
+    selectedGender.value = genders.value.find(
+      (gender) => gender.name === user.value.Gender
+    );
+    birthday.value = convertDateStringToDateObject(user.value.Birthday);
+  };
+
+  const handleDelete = async () => {
+    deniedAccess();
+    router.go();
+  };
 </script>
 
 <template>
@@ -68,14 +163,16 @@
           <form
             class="flex justify-between gap-14"
             autocomplete="off"
+            @submit.prevent="handleUpdate"
           >
             <div class="grid gap-6 mt-8">
               <div class="flex justify-content-center">
                 <FloatLabel>
                   <InputText
-                    class="rounded-[20px] w-[458px] h-[50px]"
+                    class="rounded-[10px] w-[458px] h-[50px]"
                     id="username"
-                    v-model="value_username"
+                    v-model="user.Username"
+                    disabled
                   />
                   <label for="username">Tên đăng nhập</label>
                 </FloatLabel>
@@ -84,43 +181,49 @@
               <div class="flex justify-content-center">
                 <FloatLabel>
                   <InputText
-                    class="rounded-[20px] w-[458px] h-[50px]"
+                    class="rounded-[10px] w-[458px] h-[50px]"
                     id="fullname"
-                    v-model="value_fullname"
+                    v-model="user.FullName"
                   />
                   <label for="fullname">Họ và tên</label>
                 </FloatLabel>
               </div>
 
-              <div class="flex justify-content-center">
+              <div class="flex items-center gap-[10px] justify-between">
                 <FloatLabel>
-                  <InputText
-                    class="rounded-[20px] w-[210px] h-[50px]"
+                  <Calendar
+                    class="rounded-[10px] w-[210px] h-[50px]"
                     id="birthdate"
-                    v-model="value_birthdate"
+                    dateFormat="dd/mm/yy"
+                    v-model="birthday"
+                    showIcon
+                    :showOnFocus="false"
                   />
                   <label for="birthdate">Ngày sinh</label>
                 </FloatLabel>
 
-                <FloatLabel class="mx-[38px]">
-                  <InputText
-                    class="rounded-[20px] w-[210px] h-[50px]"
-                    id="gender"
-                    v-model="value_gender"
-                  />
-                  <label for="gender">Giới tính</label>
-                </FloatLabel>
+                <!-- <label for="gender">Giới tính</label> -->
+                <Dropdown
+                  v-model="selectedGender"
+                  :options="genders"
+                  optionLabel="name"
+                  placeholder="Giới tính"
+                  class="flex items-center py-[3px] w-full md:w-14rem"
+                />
               </div>
 
               <div class="flex flex-wrap gap-3 justify-content-center">
                 <Button
                   class="rounded-[20px] btn_update"
                   label="Cập nhật"
+                  type="submit"
                 />
                 <Button
+                  @click="handCancel"
                   class="rounded-[20px] btn_cancel"
                   label="Hủy"
                   severity="contrast"
+                  type="button"
                 />
               </div>
             </div>
@@ -128,7 +231,7 @@
             <!-- form-right -->
             <div class="flex flex-col items-center justify-center gap-4">
               <img
-                src="../assets/imgs/avatar_demo.png"
+                src="@/assets/imgs/avatar_demo.png"
                 alt=""
                 width="150px"
               />
@@ -154,38 +257,43 @@
       </template>
       <!-- Tài khoản và bảo mật -->
       <template v-else-if="selectedTab === 2">
-        <form autocomplete="off">
+        <form
+          @submit.prevent="handleUpdate"
+          autocomplete="off"
+        >
           <div class="content_security">
             <div class="grid gap-6 mt-6">
               <div class="flex justify-content-center">
                 <FloatLabel>
                   <InputText
-                    class="rounded-[20px] w-[458px] h-[50px]"
+                    class="rounded-[10px] w-[458px] h-[50px]"
                     id="useremail"
-                    v-model="value_email"
+                    v-model="user.Email"
                     disabled
                   />
                   <label for="useremail">Email</label>
                 </FloatLabel>
               </div>
 
-              <div class="flex justify-content-center">
+              <!-- MẬT KHẨU -->
+              <!-- <div class="flex justify-content-center">
                 <FloatLabel>
                   <InputText
-                    class="rounded-[20px] w-[458px] h-[50px]"
+                    class="rounded-[10px] w-[458px] h-[50px]"
                     id="pass"
-                    v-model="value_pass"
+                    v-model="user.Password"
+                    :feedback="false"
                   />
                   <label for="pass">Mật khẩu</label>
                 </FloatLabel>
-              </div>
+              </div> -->
 
               <div class="flex justify-content-center">
                 <FloatLabel>
                   <InputText
-                    class="rounded-[20px] w-[458px] h-[50px]"
+                    class="rounded-[10px] w-[458px] h-[50px]"
                     id="phone"
-                    v-model="value_phone"
+                    v-model="user.phone"
                   />
                   <label for="phone">Số điện thoại</label>
                 </FloatLabel>
@@ -195,11 +303,14 @@
                 <Button
                   class="rounded-[20px] btn_save"
                   label="Lưu"
+                  type="submit"
                 />
                 <Button
+                  @click="handCancel"
                   class="rounded-[20px] btn_cancel"
                   label="Hủy"
                   severity="contrast"
+                  type="button"
                 />
               </div>
 
@@ -233,10 +344,14 @@
             class="rounded-[20px] btn_canceldel"
             label="Hủy"
             severity="secondary"
+            type="button"
+            @click="(check = 0), (selectedTab = 1)"
           />
           <Button
             class="rounded-[20px] btn_del"
             label="Xóa"
+            type="button"
+            @click="handleDelete"
           />
         </div>
       </template>
