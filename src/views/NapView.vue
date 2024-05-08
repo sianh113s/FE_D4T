@@ -18,14 +18,14 @@ const onNpGiTextClick = () => {
 <template>
   <HeaderAfterLogin></HeaderAfterLogin>
   <div
-    class="self-stretch flex flex-row items-center justify-center py-0 pr-0 pl-0.5 box-border max-w-full mt-[-10px]"
+    class="self-stretch flex flex-row items-center justify-center py-0 pr-0 pl-0.5 box-border max-w-full mt-[0px]"
   >
     <div
       class="h-[285px] flex-1  box-border overflow-hidden flex flex-row items-center justify-center py-0 pr-0 pl-0 max-w-full border-[1px] border-solid"
     >
       <div class="h-[285px] flex-1 relative max-w-full">
         <img
-          class="absolute top-[0px] left-[-2px] w-full h-full object-cover [filter:blur(5px)]"
+          class="absolute top-[6px] left-[-2px] w-full h-full object-cover [filter:blur(5px)]"
           loading="lazy"
           alt=""
           src="../../src/assets/imgs/pngtree-acorns-on-the-ground-in-the-forest-image_2556793.jpg"
@@ -35,10 +35,10 @@ const onNpGiTextClick = () => {
         >
           <span class="w-full">
             <p class="m-0 text-45xl md:text-6xl lg:text-7xl text-white whitespace-pre-wrap">  Gói sồi</p>
-            <p class="m-0 text-lg md:text-2xl lg:text-5xl text-white whitespace-pre-wrap px-[20px]">
+            <p class="m-0 text-13xl md:text-2xl lg:text-5xl text-white whitespace-pre-wrap px-[14px]">
                 Đọc toàn bộ nội dung sách với huy hiệu Sồi
             </p>
-            <p class="m-0 text-lg md:text-2xl lg:text-5xl text-white whitespace-pre-wrap px-[20px]">
+            <p class="m-0 text-13xl md:text-2xl lg:text-5xl text-white whitespace-pre-wrap px-[14px]">
                 Nạp càng nhiều, khuyến mãi càng lớn
             </p>
           </span>
@@ -50,7 +50,7 @@ const onNpGiTextClick = () => {
     class="self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-[63px] box-border gap-[26px] max-w-full text-left text-13xl text-black font-segoe-ui mq800:pb-[27px] mq800:box-border mq1350:pb-[41px] mq1350:box-border"
   >
     <h2
-        class="m-0 self-stretch relative text-inherit font-bold font-inherit whitespace-pre-wrap mq450:text-lgi mq800:text-7xl mr-3"
+        class="m-0 self-stretch relative text-inherit font-bold font-inherit whitespace-pre-wrap mq450:text-lgi mq800:text-7xl mr-3 mr-4"
       >
         Nạp lần đầu
       </h2>
@@ -73,7 +73,7 @@ const onNpGiTextClick = () => {
       </div>
               
       <h2
-        class="m-0 self-stretch relative text-inherit font-bold font-inherit whitespace-pre-wrap mq450:text-lgi mq800:text-7xl"
+        class="m-0 self-stretch relative text-inherit font-bold font-inherit whitespace-pre-wrap mq450:text-lgi mq800:text-7xl mr-4"
       >
         Chọn gói sồi muốn nạp
       </h2>
@@ -159,4 +159,159 @@ const onNpGiTextClick = () => {
 .mr-4{
   margin-left: 25px;
 }
+/* Colors */
+.white {
+  color: #fff;
+}
+
+.sandybrown {
+  color: rgba(255, 199, 120, 0.75);
+}
+.border-sandybrown{
+  border-color: rgba(255, 199, 120, 0.75);
+}
+.bg-sandybrown{
+  background-color: rgba(255, 199, 120, 0.75);
+}
+.black {
+  color: #000;
+}
+
+.cornsilk {
+  color: #faf4d4;
+}
+
+.brown {
+  color: #9f2d2d;
+}
+
+.green {
+  color: #119663;
+}
+
+.gainsboro-100 {
+  color: #d9d9d9;
+}
+.border-gainboro-100{
+  border-color: #d9d9d9;
+}
+
+.bg-gainsboro-100{
+  background-color: #d9d9d9;
+}
+.gainsboro-200 {
+  color: rgba(217, 217, 217, 0.25);
+}
+
+.bg-gainsboro-200{
+  background-color: rgba(217, 217, 217, 0.25);
+}
+.gainsboro-300 {
+  color: #119663;
+}
+
+.aquamarine {
+  color: #8bf8c4;
+}
+
+.text-chocolate {
+  color: #c17011;
+}
+
+.mediumgreen-100 {
+  color: #10b981;
+}
+
+.mediumgreen-200 {
+  color: #00a169;
+}
+
+.gray-100 {
+  color: #898989;
+}
+
+.border-gray-100{
+border-color: #d9d9d9;
+}
+.gray-200 {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.whitesmoke {
+  color: #efefef;
+}
+
+/* Spacing - no custom spacing defined */
+
+/* Font Family */
+.roboto {
+  font-family: Roboto;
+}
+
+.segoe-ui {
+  font-family: 'Segoe UI';
+}
+
+/* Border Radius */
+.rounded-6xl {
+  border-radius: 25px;
+}
+
+.rounded-31xl {
+  border-radius: 50px;
+}
+
+.rounded-30xl {
+  border-radius: 45px;
+}
+
+.rounded-8xs {
+  border-radius: 5px;
+}
+
+/* Font Size */
+.text-lg {
+  font-size: 18px;
+}
+
+.text-xl {
+  font-size: 20px;
+}
+
+.text-base {
+  font-size: 16px;
+}
+
+.text-5xl {
+  font-size: 24px;
+}
+
+.text-lgi {
+  font-size: 19px;
+}
+
+.text-13xl {
+  font-size: 32px;
+}
+
+.text-14xl {
+  font-size: 30px;
+}
+
+.text-7xl {
+  font-size: 26px;
+}
+
+.text-45xl {
+  font-size: 64px;
+}
+
+.text-xs {
+  font-size: 12px;
+}
+
+.text-inherit {
+  font-size: inherit;
+}
+
 </style>
