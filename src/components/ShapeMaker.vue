@@ -30,7 +30,7 @@
                 class="cursor-pointer [border:none] py-0 px-[25px] bg-gainsboro-100 flex-1 rounded-31xl flex flex-row items-end justify-start z-[1]"
               >
                 <b
-                  class="w-[70px] relative text-base flex font-segoe-ui text-chocolate text-center items-center justify-center shrink-0 z-[2]"
+                  class="w-[70px] relative text-base flex font-segoe-ui chocolate center items-center justify-center shrink-0 z-[2]"
                   >{{prop}}</b
                 >
                 <img
@@ -60,13 +60,13 @@
             >
               <div class="h-[46px] flex-1 relative">
                 <div
-                  class="absolute top-[14px] left-[25px] box-border w-[81px] h-px z-[1] border-t-[1px] border-solid border-gray-100"
+                  class="absolute top-[8px] left-[25px] box-border w-[81px] h-px z-[1] border-t-[2px] border-solid border-gray-100"
                 />
                 <b
                   class="absolute top-[0px] left-[0px] flex items-center w-full h-full z-[2]"
                 >
-                  <span class="[line-break:anywhere] w-full">
-                    <p class="m-0">{{prop1}}</p>
+                  <span class="[word-break:anywhere] w-full">
+                    <p class="m-0 gainsboro-100">{{prop1}}</p>
                     <p class="m-0 text-lg text-black">{{prop2}}</p>
                   </span>
                 </b>
@@ -104,8 +104,164 @@
       },
       methods:{
         onNpGiTextClick(){
-            this.$router.push("/payment");
+            this.$router.push("/Nap/Payment");
         },
       },
     });
   </script>
+  <style scoped>
+  /* Colors */
+.white {
+  color: #fff;
+}
+
+.sandybrown {
+  color: rgba(255, 199, 120, 0.75);
+}
+.border-sandybrown{
+  border-color: rgba(255, 199, 120, 0.75);
+}
+.black {
+  color: #000;
+}
+
+.cornsilk {
+  color: #faf4d4;
+}
+
+.brown {
+  color: #9f2d2d;
+}
+
+.green {
+  color: #119663;
+}
+
+.gainsboro-100 {
+  color: #d9d9d9;
+}
+.border-gainboro-100{
+  border-color: #d9d9d9;
+}
+
+.bg-gainsboro-100{
+  background-color: #d9d9d9;
+}
+.gainsboro-200 {
+  color: rgba(217, 217, 217, 0.25);
+}
+
+.bg-gainsboro-200{
+  background-color: rgba(217, 217, 217, 0.25);
+}
+.gainsboro-300 {
+  color: #119663;
+}
+
+.aquamarine {
+  color: #8bf8c4;
+}
+
+.chocolate {
+  color: #c17011;
+}
+
+.mediumgreen-100 {
+  color: #10b981;
+}
+
+.mediumgreen-200 {
+  color: #00a169;
+}
+
+.gray-100 {
+  color: #898989;
+}
+
+.border-gray-100{
+border-color: #d9d9d9;
+}
+.gray-200 {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.whitesmoke {
+  color: #efefef;
+}
+
+/* Spacing - no custom spacing defined */
+
+/* Font Family */
+.roboto {
+  font-family: Roboto;
+}
+
+.segoe-ui {
+  font-family: 'Segoe UI';
+}
+
+/* Border Radius */
+.rounded-6xl {
+  border-radius: 25px;
+}
+
+.rounded-31xl {
+  border-radius: 50px;
+}
+
+.rounded-30xl {
+  border-radius: 45px;
+}
+
+.rounded-8xs {
+  border-radius: 5px;
+}
+
+/* Font Size */
+.text-lg {
+  font-size: 18px;
+}
+
+.text-xl {
+  font-size: 20px;
+}
+
+.text-base {
+  font-size: 16px;
+}
+
+.text-5xl {
+  font-size: 24px;
+}
+
+.text-lgi {
+  font-size: 19px;
+}
+
+.text-13xl {
+  font-size: 32px;
+}
+
+.text-14xl {
+  font-size: 30px;
+}
+
+.text-7xl {
+  font-size: 26px;
+}
+
+.text-45xl {
+  font-size: 64px;
+}
+
+.text-xs {
+  font-size: 12px;
+}
+
+.text-inherit {
+  font-size: inherit;
+}
+
+/* Screens - no custom screen sizes defined */
+
+</style>
