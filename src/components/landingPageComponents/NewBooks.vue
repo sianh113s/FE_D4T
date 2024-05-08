@@ -113,28 +113,33 @@
 </script>
 
 <template>
-  <div class="container w-[1300px] h-[900px] mt-[40px]">
+  <div class="w-[1300px] h-[900px] mt-[40px]">
     <div
       class="book-title mb-[30px] w-[170px] h-[38px] flex justify-center items-center cursor-pointer relative"
     >
-      <span class="i-title mr-1"
+      <span class="mr-1 i-title"
         ><i
           class="pi pi-sparkles"
           style="font-size: 1rem"
         ></i
       ></span>
-      <span class="text-[15px] mr-1 font-medium">Sách mới cập nhật</span>
+      <span
+        id="sachmoinhat"
+        class="text-[15px] mr-1 font-medium"
+      >
+        Sách mới cập nhật
+      </span>
       <div class="absolute inline-block left-[170px] bottom-[3px]">
         <span class="text-[25px]">></span>
       </div>
     </div>
-    <div class="flex flex-col justify-center items-center">
+    <div class="flex flex-col items-center justify-center">
       <div class="flex">
         <div
           class="book-new-left w-[1000px] p-[20px] flex flex-col justify-center items-center"
         >
           <table class="w-[900px]">
-            <tr class="book-new-head font-bold">
+            <tr class="font-bold book-new-head">
               <td>Tên sách</td>
               <td>Thể loại</td>
               <td>Ngôn ngữ</td>
@@ -144,7 +149,7 @@
               v-for="(book, index) in data.metadata.books"
               :key="index"
             >
-              <td class="book-hover font-bold cursor-pointer">
+              <td class="font-bold cursor-pointer book-hover">
                 {{ book.Title }}
               </td>
               <td class="cate-hover text-[14px] cursor-pointer">
@@ -157,7 +162,7 @@
         </div>
         <div class="book-new-right w-[300px] h-[430px]">
           <div class="p-[24px]">
-            <div class="comment-head font-medium mb-4">
+            <div class="mb-4 font-medium comment-head">
               <span class="mr-1"
                 ><i
                   class="pi pi-comment"
@@ -172,7 +177,7 @@
                 v-for="(comment, index) in data.metadata.comments"
                 :key="index"
               >
-                <p class="comment-title cursor-pointer font-bold">
+                <p class="font-bold cursor-pointer comment-title">
                   {{ comment.Title }}
                 </p>
                 <p class="text-[14px]">{{ comment.Content }}</p>

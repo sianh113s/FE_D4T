@@ -71,16 +71,18 @@
     <header class="">
       <div class="h-[80px] flex justify-between px-6 header__inner">
         <div class="left">
-          <img
-            class="w-[167px] h-[48px]"
-            src="../../assets/imgs/logo-dai.png"
-            alt="Logo"
-          />
+          <RouterLink :to="{ name: 'home' }">
+            <img
+              class="w-[167px] h-[48px]"
+              src="../../assets/imgs/logo-dai.png"
+              alt="Logo"
+            />
+          </RouterLink>
         </div>
         <div class="middle">
           <ul class="flex gap-[50px] items-center">
             <li
-              class="kind p-4 cursor-pointer shadow-inner"
+              class="p-4 shadow-inner cursor-pointer kind"
               @mouseenter="showKindBook"
               @mouseleave="hideKindBook"
             >
@@ -210,9 +212,15 @@
               </div>
             </li>
 
-            <li class="menu-hover p-4 cursor-pointer">Sách mới nhất</li>
-            <li class="menu-hover p-4 cursor-pointer">Hot</li>
-            <li class="menu-hover p-4 cursor-pointer">Nạp sồi</li>
+            <li class="p-4 cursor-pointer menu-hover">
+              <a href="#sachmoinhat"> Sách mới nhất </a>
+            </li>
+            <li class="p-4 cursor-pointer menu-hover">
+              <a href="#sachhot"> Hot </a>
+            </li>
+            <li class="p-4 cursor-pointer menu-hover">
+              <RouterLink :to="{ name: 'Nap' }"> Nạp sồi </RouterLink>
+            </li>
 
             <li>
               <div class="flex flex-wrap gap-3 card justify-content-center">

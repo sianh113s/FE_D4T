@@ -86,24 +86,28 @@
     <div
       class="book-title mb-[30px] w-[100px] h-[38px] flex justify-center items-center cursor-pointer relative"
     >
-      <span class="i-title mr-1"
+      <span class="mr-1 i-title"
         ><i
           class="pi pi-trophy"
           style="font-size: 1rem"
         ></i
       ></span>
-      <span class="text-[15px] mr-1 font-medium">Sách hot</span>
+      <span
+        id="sachhot"
+        class="text-[15px] mr-1 font-medium"
+        >Sách hot</span
+      >
       <div class="absolute inline-block left-[100px] bottom-[3px]">
         <span class="text-[25px]">></span>
       </div>
     </div>
-    <div class="flex flex-col justify-center items-center">
-      <div class="book-hot relative flex justify-center items-center">
+    <div class="flex flex-col items-center justify-center">
+      <div class="relative flex items-center justify-center book-hot">
         <div class="grid grid-cols-6">
           <ul
             v-for="(book, index) in data.metadata.books"
             :key="index"
-            class="book-item flex justify-center items-center"
+            class="flex items-center justify-center book-item"
           >
             <li class="w-[190px] h-[340px]">
               <img
@@ -111,7 +115,7 @@
                 :src="book.CoverURL"
                 alt="Book Cover"
               />
-              <p class="book-name font-bold cursor-pointer">{{ book.Title }}</p>
+              <p class="font-bold cursor-pointer book-name">{{ book.Title }}</p>
             </li>
           </ul>
         </div>
