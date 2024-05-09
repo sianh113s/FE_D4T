@@ -26,6 +26,8 @@
   const store = useConditionStore();
   const useCoins = useCoinsStore();
 
+  const userFname = JSON.parse(localStorage.getItem("FullName")) || "user";
+
   const handlleLogout = async () => {
     let urlApi = "/access/logout";
     let requestData = {
@@ -50,7 +52,7 @@
 
       setTimeout(() => {
         router.push({ path: "/" });
-        // router.go();
+        router.go();
       }, 1000);
     } catch (error) {
       console.log("error :>> ", error);
@@ -82,7 +84,7 @@
         <div class="middle">
           <ul class="flex gap-[50px] items-center">
             <li
-              class="p-4 shadow-inner cursor-pointer kind"
+              class="p-4 cursor-pointer kind"
               @mouseenter="showKindBook"
               @mouseleave="hideKindBook"
             >
@@ -101,64 +103,64 @@
                   class="kind-book-row w-[870px] relative flex justify-around gap-[50]"
                 >
                   <div class="kind-book-row-item w-[200px]">
-                    <router-link>
+                    <router-link to="/">
                       <span class="title text-[18px] font-medium">Văn học</span>
                     </router-link>
                     <ul class="subKindBook">
                       <li>
-                        <router-link>
+                        <router-link to="/">
                           <p>Tiểu thuyết</p>
                         </router-link>
                       </li>
                       <li>
-                        <router-link>
+                        <router-link to="/">
                           <p>Ngôn tình</p>
                         </router-link>
                       </li>
                       <p class="kind-link">
-                        <router-link>Xem tất cả</router-link>
+                        <router-link to="/">Xem tất cả</router-link>
                       </p>
                     </ul>
                   </div>
                   <div class="kind-book-row-item w-[200px]">
-                    <router-link>
+                    <router-link to="/">
                       <span class="title text-[18px] font-medium">Kinh tế</span>
                     </router-link>
                     <ul class="subKindBook">
                       <li>
-                        <router-link>
+                        <router-link to="/">
                           <p>Quản Trị - Lãnh Đạo</p>
                         </router-link>
                       </li>
                       <li>
-                        <router-link>
+                        <router-link to="/">
                           <p>Marketing bán hàng</p>
                         </router-link>
                       </li>
                       <p class="kind-link">
-                        <router-link>Xem tất cả</router-link>
+                        <router-link to="/">Xem tất cả</router-link>
                       </p>
                     </ul>
                   </div>
                   <div class="kind-book-row-item w-[200px]">
-                    <router-link>
+                    <router-link to="/">
                       <span class="title text-[18px] font-medium"
                         >Tâm lý - Kỹ năng sống</span
                       >
                     </router-link>
                     <ul class="subKindBook">
                       <li>
-                        <router-link>
+                        <router-link to="/">
                           <p>Tâm lý</p>
                         </router-link>
                       </li>
                       <li>
-                        <router-link>
+                        <router-link to="/">
                           <p>Kỹ năng sống</p>
                         </router-link>
                       </li>
                       <p class="kind-link">
-                        <router-link>Xem tất cả</router-link>
+                        <router-link to="/">Xem tất cả</router-link>
                       </p>
                     </ul>
                   </div>
@@ -167,44 +169,50 @@
                   class="kind-book-row w-[870px] relative flex justify-around gap-[50]"
                 >
                   <div class="kind-book-row-item w-[200px]">
-                    <router-link>
+                    <router-link to="/">
                       <span class="title text-[18px] font-medium"
                         >Sách thiếu nhi</span
                       >
                     </router-link>
                     <ul class="subKindBook">
-                      <li><router-link>Manga - Comic</router-link></li>
-                      <li><router-link>Kiến thức bách khoa</router-link></li>
+                      <li><router-link to="/">Manga - Comic</router-link></li>
+                      <li>
+                        <router-link to="/">Kiến thức bách khoa</router-link>
+                      </li>
                       <p class="kind-link">
-                        <router-link>Xem tất cả</router-link>
+                        <router-link to="/">Xem tất cả</router-link>
                       </p>
                     </ul>
                   </div>
                   <div class="kind-book-row-item w-[200px]">
-                    <router-link>
+                    <router-link to="/">
                       <span class="title text-[18px] font-medium"
                         >Tiêu sử hồi ký</span
                       >
                     </router-link>
                     <ul class="subKindBook">
-                      <li><router-link>Câu chuyện cuộc đời</router-link></li>
-                      <li><router-link>Nghệ thuật - Giải trí</router-link></li>
+                      <li>
+                        <router-link to="/">Câu chuyện cuộc đời</router-link>
+                      </li>
+                      <li>
+                        <router-link to="/">Nghệ thuật - Giải trí</router-link>
+                      </li>
                       <p class="kind-link">
-                        <router-link>Xem tất cả</router-link>
+                        <router-link to="/">Xem tất cả</router-link>
                       </p>
                     </ul>
                   </div>
                   <div class="kind-book-row-item w-[200px]">
-                    <router-link>
+                    <router-link to="/">
                       <span class="title text-[18px] font-medium"
                         >Sách học ngoại ngữ</span
                       >
                     </router-link>
                     <ul class="subKindBook">
-                      <li><router-link>Tiếng Anh</router-link></li>
-                      <li><router-link>Tiếng Nhật</router-link></li>
+                      <li><router-link to="/">Tiếng Anh</router-link></li>
+                      <li><router-link to="/">Tiếng Nhật</router-link></li>
                       <p class="kind-link">
-                        <router-link>Xem tất cả</router-link>
+                        <router-link to="/">Xem tất cả</router-link>
                       </p>
                     </ul>
                   </div>
@@ -274,8 +282,8 @@
                 class="flex items-center tooltip-top p-[15px] justify-between"
               >
                 <div class="flex flex-col t-left">
-                  <span class="text-xl font-bold text-[#334155]"
-                    >Dương Dũng</span
+                  <span class="text-xl font-bold text-[#334155]">
+                    {{ userFname }}</span
                   >
                   <div class="flex items-center gap-3 pt-2">
                     <i

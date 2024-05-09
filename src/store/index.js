@@ -24,10 +24,14 @@ export const useCoinsStore = defineStore("coins", {
   getters: {},
   actions: {
     async setCoins() {
-      const response = await http.get(
-        "http://localhost:3000/v1/api/transaction/coins"
-      );
-      this.coins = response.data.metadata?.coins;
+      if (localStorage.getItem("isLoggedIn") === "true") {
+        const response = await http.get(
+          "http://localhost:3000/v1/api/transaction/coins"
+        );
+        this.coins = response.data.metadata?.coins;
+      } else {
+        this.coins = 0;
+      }
     },
   },
 });
