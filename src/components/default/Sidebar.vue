@@ -13,6 +13,7 @@
   });
 
   const store = useCoinsStore();
+  const userFname = JSON.parse(localStorage.getItem("FullName")) || "user";
 </script>
 
 <template>
@@ -23,7 +24,9 @@
       >
         <div class="flex items-center tooltip-top p-[15px] justify-between">
           <div class="flex flex-col t-left">
-            <span class="text-xl font-bold text-[#334155]">Dương Dũng</span>
+            <span class="text-xl font-bold text-[#334155]">{{
+              userFname
+            }}</span>
             <div class="flex items-center gap-3 pt-2">
               <i
                 class="pi pi-credit-card"

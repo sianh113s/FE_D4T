@@ -1,6 +1,4 @@
 <script setup>
-  // ! fake data
-
   import { onMounted, ref } from "vue";
   import postReq from "../../api/post.js";
   import getReq from "../../api/get.js";
@@ -8,8 +6,8 @@
   let data = ref({});
 
   const getData = async () => {
-    const res = await getReq("/book/top-five-views");
-
+    const res = await getReq("/read/tracking/list");
+    // console.log("res :>> ", res);
     data.value = res;
   };
 
@@ -27,11 +25,7 @@
           style="font-size: 1rem"
         ></i
       ></span>
-      <span
-        id="sachhot"
-        class="text-[15px] mr-1 font-medium"
-        >Sách hot</span
-      >
+      <span class="mr-1 font-medium">Đang đọc</span>
       <div class="absolute inline-block left-[100px] bottom-[3px]">
         <span class="text-[25px]">></span>
       </div>
@@ -40,7 +34,7 @@
       <div class="relative flex items-center justify-center book-hot">
         <div class="grid grid-cols-6">
           <ul
-            v-for="(book, index) in data?.metadata?.books"
+            v-for="(book, index) in data?.metadata?.trackedList"
             :key="index"
             class="flex items-center justify-center book-item"
           >
@@ -53,11 +47,6 @@
               <p class="font-bold cursor-pointer book-name">{{ book.Title }}</p>
             </li>
           </ul>
-        </div>
-        <div
-          class="book-hot-btn w-[395px] h-[45px] flex justify-center items-center font-medium"
-        >
-          <button>Xem Thêm</button>
         </div>
       </div>
       <div class="hr-hot w-[1200px] mt-[30px]"></div>

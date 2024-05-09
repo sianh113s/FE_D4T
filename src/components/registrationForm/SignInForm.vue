@@ -19,6 +19,10 @@
       const response = await http.post(urlApi, data);
 
       localStorage.setItem(
+        "FullName",
+        JSON.stringify(response.data.metadata.user.FullName)
+      );
+      localStorage.setItem(
         "Username",
         JSON.stringify(response.data.metadata.user.Username)
       );

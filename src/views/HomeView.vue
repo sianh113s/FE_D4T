@@ -5,6 +5,8 @@
   import MainBanner from "@/components/landingPageComponents/MainBanner.vue";
   import HotBooks from "@/components/landingPageComponents/HotBooks.vue";
   import NewBooks from "@/components/landingPageComponents/NewBooks.vue";
+  import TrackingBooks from "@/components/landingPageComponents/TrackingBooks.vue";
+  import FreeBooks from "@/components/landingPageComponents/FreeBooks.vue";
 
   import { RouterLink, RouterView } from "vue-router";
 
@@ -26,10 +28,12 @@
     </div>
     <div>
       <MainBanner></MainBanner>
-      <div class="flex flex-col justify-center items-center h-auto">
+      <div class="flex flex-col items-center justify-center h-auto">
+        <TrackingBooks v-if="store.isLoggedIn"></TrackingBooks>
+        <FreeBooks></FreeBooks>
         <HotBooks></HotBooks>
       </div>
-      <div class="flex flex-col justify-center items-center h-auto">
+      <div class="flex flex-col items-center justify-center h-auto">
         <NewBooks></NewBooks>
       </div>
     </div>

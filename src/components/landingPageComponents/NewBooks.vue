@@ -1,119 +1,21 @@
 <script setup>
   import Comments from "postcss/lib/comment";
-  const data = {
-    message: "Get all books success!",
-    status: 200,
-    metadata: {
-      books: [
-        {
-          Title: "7 thói quen để thành đạt",
-          title_for_search: "7_thoi_quen_de_thanh_dat",
-          Categories: "Kỹ năng sống",
-          language: "Tiếng Việt",
-          Author: "Stephen Covey",
-        },
-        {
-          Title: "Đắc nhân tâm",
-          title_for_search: "dac_nhan_tam",
-          Categories: "Kỹ năng sống",
-          language: "Tiếng Việt",
-          Author: "Dale Carnegie",
-        },
-        {
-          Title: "Chiến thắng con quỷ trong bạn",
-          title_for_search: "chien_thang_con_quy_trong_ban",
-          Categories: "Tâm lý, Kỹ năng sống",
-          language: "Tiếng Việt",
-          Author: "Napoleon Hill",
-        },
-        {
-          Title: "Dám nghĩ lớn",
-          title_for_search: "dam_nghi_lon",
-          Categories: "Tâm lý",
-          language: "Tiếng Việt",
-          Author: "David J. Schwartz",
-        },
-        {
-          Title: "Magic of thinking",
-          title_for_search: "magic_of_thinking",
-          Categories: "Tâm lý",
-          language: "Tiếng Anh",
-          Author: "David J. Schwartz",
-        },
-        {
-          Title: "Nói nhiều không bằng nói đúng",
-          title_for_search: "noi_nhieu_khong_bang_noi_dung",
-          Categories: "Kỹ năng sống",
-          language: "Tiếng Việt",
-          Author: "",
-        },
-        {
-          Title: "Outwitting the devil",
-          title_for_search: "outwitting_the_devil",
-          Categories: "Tâm lý, Kỹ năng sống",
-          language: "Tiếng Anh",
-          Author: "Napoleon Hill",
-        },
-        {
-          Title: "Phi lý trí",
-          title_for_search: "phi_ly_tri",
-          Categories: "Kỹ năng sống",
-          language: "Tiếng Việt",
-          Author: "Dan Ariely",
-        },
-        {
-          Title: "Predictable",
-          title_for_search: "predictable",
-          Categories: "Kỹ năng sống",
-          language: "Tiếng Anh",
-          Author: "Dan Ariely",
-        },
-        {
-          Title: "Suy nghĩ và làm giàu",
-          title_for_search: "suy_nghi_va_lam_giau",
-          Categories: "Kỹ năng sống",
-          language: "Tiếng Việt",
-          Author: "Napoleon Hill",
-        },
-        {
-          Title: "Predictable",
-          title_for_search: "predictable",
-          Categories: "Kỹ năng sống",
-          language: "Tiếng Anh",
-          Author: "Dan Ariely",
-        },
-        {
-          Title: "Magic of thinking",
-          title_for_search: "magic_of_thinking",
-          Categories: "Tâm lý",
-          language: "Tiếng Anh",
-          Author: "David J. Schwartz",
-        },
-      ],
-      comments: [
-        {
-          Title: "7 thói quen để thành đạt",
-          Content: "Sách này hay quá đi, nội dung thật thâm thúy",
-          CommentDate: "23 phút trước",
-        },
-        {
-          Title: "Đắc nhân tâm",
-          Content: "Sau khi đọc cuốn này mình đã giác ngộ triết lí cuộc sống",
-          CommentDate: "1 tiếng trước",
-        },
-        {
-          Title: "Chiến thắng con quỷ trong bạn",
-          Content:
-            "Yeah, mình phải sống kỉ luật ngay sau khi đọc cuốn sách này",
-          CommentDate: "5 phút trước",
-        },
-      ],
-    },
+
+  import { onMounted, ref } from "vue";
+  import getReq from "../../api/get.js";
+
+  let data = ref({});
+
+  const getData = async () => {
+    const res = await getReq("/book/top-six-new");
+    data.value = res;
   };
+
+  onMounted(getData);
 </script>
 
 <template>
-  <div class="w-[1300px] h-[900px] mt-[40px]">
+  <div class="w-[1300px] my-[40px]">
     <div
       class="book-title mb-[30px] w-[170px] h-[38px] flex justify-center items-center cursor-pointer relative"
     >
@@ -146,7 +48,7 @@
               <td>Tác giả</td>
             </tr>
             <tr
-              v-for="(book, index) in data.metadata.books"
+              v-for="(book, index) in data?.metadata?.books"
               :key="index"
             >
               <td class="font-bold cursor-pointer book-hover">
@@ -172,7 +74,7 @@
               <span>Bình luận gần đây</span>
             </div>
             <ul class="book-comment">
-              <li
+              <!-- <li
                 class="relative"
                 v-for="(comment, index) in data.metadata.comments"
                 :key="index"
@@ -184,7 +86,7 @@
                 <div class="comment-date">
                   <small class="comment-date">{{ comment.CommentDate }}</small>
                 </div>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>
