@@ -102,14 +102,21 @@
             v-for="(cbook, index) in tracking_books"
             :key="index"
           >
-            <img
-              class="w-[165px] h-[240px]"
-              alt=""
-              :src="cbook.CoverURL"
-            />
-            <p class="font-medium text-sm max-w-[165px] h-[40px]">
-              {{ cbook.Title }}
-            </p>
+            <router-link
+              :to="{
+                name: 'Sach',
+                query: { title_for_search: cbook.title_for_search },
+              }"
+            >
+              <img
+                class="w-[165px] h-[240px]"
+                alt=""
+                :src="cbook.CoverURL"
+              />
+              <p class="font-medium text-sm max-w-[165px] h-[40px]">
+                {{ cbook.Title }}
+              </p>
+            </router-link>
           </div>
         </div>
       </template>
@@ -121,14 +128,21 @@
             v-for="(fbook, index) in loved_books"
             :key="index"
           >
-            <img
-              class="w-[165px] h-[240px]"
-              alt=""
-              v-bind:src="fbook.CoverURL"
-            />
-            <p class="font-medium text-sm max-w-[165px] h-[40px]">
-              {{ fbook.Title }}
-            </p>
+            <router-link
+              :to="{
+                name: 'Sach',
+                query: { title_for_search: fbook.title_for_search },
+              }"
+            >
+              <img
+                class="w-[165px] h-[240px]"
+                alt=""
+                v-bind:src="fbook.CoverURL"
+              />
+              <p class="font-medium text-sm max-w-[165px] h-[40px]">
+                {{ fbook.Title }}
+              </p>
+            </router-link>
           </div>
         </div>
       </template>

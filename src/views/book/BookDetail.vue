@@ -6,7 +6,10 @@
   import postReq from "@/api/post";
   import showNotification from "@/utils/showNotification";
   import { useToast } from "primevue/usetoast";
+  import router from "@/router";
+  import { useRoute } from "vue-router";
   const toast = useToast();
+  const $route = useRoute();
 
   // Reactive variables
   const value = ref(4); // Example value
@@ -15,6 +18,8 @@
     label: "Trang chủ",
     route: "/",
   });
+
+  const title_for_search = $route.query.title_for_search;
 
   // Example home object
   const showFullContent = ref(false); // Boolean flag
@@ -25,24 +30,18 @@
         "https://bloganchoi.com/wp-content/uploads/2022/02/avatar-trang-y-nghia.jpeg",
     },
   ]); // Example user data
-  const chapters = ref([
-    {
-      id: 4,
-      title_for_search: "dac_nhan_tam",
-      Username: "duongvandung2k3",
-      PageNumber: 11,
-    },
-  ]);
+  const chapters = ref([]);
 
   // API
   let resAPIdata = ref({});
   const callAPI = async () => {
     const dataReq = {
-      title: "",
+      title: title_for_search,
     };
     const dataReq2 = {
-      title_for_search: "dac_nhan_tam",
+      title_for_search,
     };
+    console.log("dataReq2 :>> ", dataReq2);
     const responseBookmarks = await postReq("/book/bookmarks", dataReq2);
 
     resAPIdata.value = await postReq("/book/search-tag-name", dataReq);
@@ -100,7 +99,7 @@
 
   const handleLoved = async () => {
     const dataReq = {
-      title_for_search: "dac_nhan_tam",
+      title_for_search,
     };
 
     if (!loved.value) {
@@ -171,7 +170,7 @@
 
     <!-- CONTAINER -->
     <div class="container mt-5">
-      <div class="flex flex-col">
+      <div class="flex flex-col w-[1160px]">
         <div class="flex flex-row">
           <div class="basis-1/3">
             <div class="flex-col mr-5">

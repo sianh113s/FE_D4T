@@ -45,12 +45,30 @@
             class="flex items-center justify-center book-item"
           >
             <li class="w-[190px] h-[340px]">
-              <img
-                class="w-[190px] h-[249px] mb-4 cursor-pointer"
-                :src="book.CoverURL"
-                alt="Book Cover"
-              />
-              <p class="font-bold cursor-pointer book-name">{{ book.Title }}</p>
+              <router-link
+                :to="{
+                  name: 'Sach',
+                  query: { title_for_search: book.title_for_search },
+                }"
+              >
+                <img
+                  class="w-[190px] h-[249px] mb-4 cursor-pointer"
+                  :src="book.CoverURL"
+                  alt="Book Cover"
+                />
+              </router-link>
+              <router-link
+                :to="{
+                  name: 'Sach',
+                  query: { title_for_search: book.title_for_search },
+                }"
+              >
+                <p
+                  class="font-bold text-center capitalize cursor-pointer book-name"
+                >
+                  {{ book.Title }}
+                </p>
+              </router-link>
             </li>
           </ul>
         </div>
