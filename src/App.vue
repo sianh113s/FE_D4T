@@ -1,13 +1,9 @@
-<script setup>
-
-import HeaderAfterLogin from './components/default/HeaderAfterLogin.vue';
-import FooterApp from './components/default/FooterApp.vue';
-</script>
+<script setup></script>
 
 <template>
- <HeaderAfterLogin></HeaderAfterLogin>
-  <router-view />
-  <FooterApp></FooterApp>
+  <div>
+    <router-view />
+  </div>
 </template>
 
 <style scoped></style>
