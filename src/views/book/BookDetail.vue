@@ -31,6 +31,7 @@
     },
   ]); // Example user data
   const chapters = ref([]);
+  const commentList = ref([]);
 
   // API
   let resAPIdata = ref({});
@@ -41,10 +42,17 @@
     const dataReq2 = {
       title_for_search,
     };
-    console.log("dataReq2 :>> ", dataReq2);
+    const dataRequestGetComments = {
+      title_for_search,
+    };
+    // console.log("dataReq2 :>> ", dataReq2);
     const responseBookmarks = await postReq("/book/bookmarks", dataReq2);
 
     resAPIdata.value = await postReq("/book/search-tag-name", dataReq);
+    commentList.value = await postReq("/comment/list", dataRequestGetComments);
+
+    // console.log("comments.value :>> ", commentList.value);
+
     chapters.value = responseBookmarks.metadata.bookmarks;
     value.value = resAPIdata.value?.metadata?.book?.star;
   };
@@ -183,7 +191,12 @@
             </div>
             <div class="mt-5 ml-10">
               <Button class="mr-5 rounded-full">
-                <RouterLink :to="{ path: '/sach/bookContent' }">
+                <RouterLink
+                  :to="{
+                    path: '/sach/bookContent',
+                    query: { title_for_search: title_for_search },
+                  }"
+                >
                   <i class="pi pi-play-circle"></i> Đọc sách
                 </RouterLink>
               </Button>
@@ -327,7 +340,11 @@
             >
           </p>
 
-          <div class="flex flex-row mt-5">
+          <div
+            class="flex flex-row mt-5"
+            v-for="(item, index) in commentList?.metadata?.comments"
+            :key="index"
+          >
             <div class="w-16">
               <img
                 :src="user[0].avatar"
@@ -336,27 +353,17 @@
                 height="40px"
               />
             </div>
-            <div class="w-full h-40 rounded-3xl bg-zinc-100">
+            <div class="w-full rounded-3xl bg-zinc-100">
               <p
-                class="w-32 pl-3 m-5 text-lg text-gray-500 border-b-2 font-extralight"
+                class="pl-3 m-5 text-lg text-gray-500 border-b-2 font-extralight"
               >
-                <template v-if="elapsedTimeInSeconds >= 60">
-                  <template v-if="years > 0"> {{ years }} Năm </template>
-                  <template v-else-if="months > 0">
-                    {{ months }} Tháng
-                  </template>
-                  <template v-else-if="hours >= 24">
-                    {{ Math.floor(hours / 24) }} Ngày
-                  </template>
-                  <template v-else-if="hours > 0"> {{ hours }} Giờ </template>
-                  <template v-else-if="minutes > 0">
-                    {{ minutes }} Phút
-                  </template>
-                  <template v-else> {{ seconds }} Giây </template>
-                </template>
-                <template v-else> {{ elapsedTimeInSeconds }} Giây </template>
-                trước
+                {{ item?.Username }}
               </p>
+
+              <!-- Noi dung cmt -->
+              <span class="block pb-5 pl-7">
+                {{ item?.Content }}
+              </span>
             </div>
           </div>
         </div>

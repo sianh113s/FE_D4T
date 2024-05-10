@@ -1,34 +1,54 @@
 <script setup>
-import { ref } from "vue";
-const home = ref({
-  icon: "pi pi-home ",
-  label: "Trang chủ",
-  route: "/",
-});
+  import http from "@/api/http-common";
+  import postReq from "@/api/post";
+  import { onMounted, ref } from "vue";
+  import { useRoute } from "vue-router";
 
-const items = ref([{ label: "Tết ở làng địa ngục", route: "/sach" }]);
-const queryBook = ref([
-  {
-    title: `Tết ở làng Địa Ngục`,
-    content:
-      "https://firebasestorage.googleapis.com/v0/b/d4t-project.appspot.com/o/dac_nhan_tam%2Fdac_nhan_tam-021.png?alt=media&token=92de9925-2c36-4f3a-b299-f9f8a8299e2b",
-  },
-]);
-// Thêm biến để lưu trữ trạng thái của việc hiển thị icon
-const showIcon = ref(false);
+  const $route = useRoute();
 
-const clickPositionY = ref(120);
-// Hàm để thay đổi trạng thái của việc hiển thị icon
-const toggleIcon = (event) => {
-  showIcon.value = !showIcon.value;
-  // Tính toán vị trí y của icon dựa trên vị trí click và kích thước của hình ảnh
-  const imageRect = event.target.getBoundingClientRect();
-  clickPositionY.value = event.clientY - imageRect.top;
-};
+  const home = ref({
+    icon: "pi pi-home ",
+    label: "Trang chủ",
+    route: "/",
+  });
+  const items = ref([{ label: "", route: "/" }]);
 
+  const title_for_search = $route.query.title_for_search;
+
+  const resAPIdata = ref({});
+
+  const title = ref("");
+  const fileUrl = ref("");
+  const page = ref("120");
+
+  onMounted(async () => {
+    const dataReq = {
+      title: title_for_search,
+    };
+
+    resAPIdata.value = await postReq("/book/search-tag-name", dataReq);
+    title.value = resAPIdata.value.metadata.book.Title;
+
+    fileUrl.value = `http://localhost:3000/v1/api/read?page=${page.value}&title=${title.value}`;
+  });
+
+  const showIcon = ref(false);
+
+  const clickPositionY = ref(120);
+  // Hàm để thay đổi trạng thái của việc hiển thị icon
+  const toggleIcon = (event) => {
+    showIcon.value = !showIcon.value;
+    // Tính toán vị trí y của icon dựa trên vị trí click và kích thước của hình ảnh
+    const imageRect = event.target.getBoundingClientRect();
+    clickPositionY.value = event.clientY - imageRect.top;
+  };
 </script>
 <template>
-  <Breadcrumb :home="home" :model="items" class="navbar">
+  <Breadcrumb
+    :home="home"
+    :model="items"
+    class="navbar"
+  >
     <template #item="{ item, props }">
       <router-link
         v-if="item.route"
@@ -36,44 +56,69 @@ const toggleIcon = (event) => {
         :to="item.route"
         custom
       >
-        <a :href="href" v-bind="props.action" @click="navigate">
-          <span :class="[item.icon, 'text-color']" style="color: black" />&nbsp;
+        <a
+          :href="href"
+          v-bind="props.action"
+          @click="navigate"
+        >
+          <span
+            :class="[item.icon, 'text-color']"
+            style="color: black"
+          />&nbsp;
           <span style="color: black; font-weight: bold">{{ item.label }} </span>
         </a>
       </router-link>
-      <a v-else :href="item.url" :target="item.target" v-bind="props.action">
+      <a
+        v-else
+        :href="item.url"
+        :target="item.target"
+        v-bind="props.action"
+      >
         <span class="font-bold text-color">{{ item.label }}</span>
       </a>
     </template>
   </Breadcrumb>
   <div class="flex flex-col">
     <div>
-    <b class="flex text-4xl justify-center mt-10">{{ queryBook[0].title }}</b>
-  </div>
-  <div class="image-container">
-  <img class="mx-auto" :src="queryBook[0].content" @click="toggleIcon" />
-  <span v-if="showIcon" class="icon pi pi-bookmark-fill" :style="{ top: clickPositionY + 'px' }"></span>
-</div>
+      <b class="flex justify-center mt-10 text-4xl">{{
+        resAPIdata.metadata?.book?.Title
+      }}</b>
+    </div>
+    <div class="image-container">
+      <img
+        class="mx-auto my-[30px] w-[1024px] border border-[#ccc]"
+        crossorigin="anonymous"
+        :src="fileUrl"
+        alt="Page Image"
+        @click="toggleIcon"
+      />
+
+      <span
+        v-if="showIcon"
+        class="icon pi pi-bookmark-fill"
+        :style="{ top: clickPositionY + 'px' }"
+      ></span>
+    </div>
   </div>
   <ScrollTop />
 </template>
 <style scoped>
-.navbar {
-  background: linear-gradient(
-    90deg,
-    rgba(112, 225, 205, 0.06),
-    rgba(61, 123, 112, 0.06)
-  );
-}
-.image-container {
-  position: relative;
-  display: inline-block;
-}
+  .navbar {
+    background: linear-gradient(
+      90deg,
+      rgba(112, 225, 205, 0.06),
+      rgba(61, 123, 112, 0.06)
+    );
+  }
+  .image-container {
+    position: relative;
+    display: inline-block;
+  }
 
-.icon {
-  position: absolute;
-  top: 0;
-  left: auto; 
-  right: 300px; 
-}
+  .icon {
+    position: absolute;
+    top: 0;
+    left: auto;
+    right: 300px;
+  }
 </style>

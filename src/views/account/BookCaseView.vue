@@ -30,47 +30,6 @@
       number: 2,
     },
   ]);
-
-  const book = ref({
-    book_img: "",
-    book_name: "",
-  });
-
-  const favourite_books = [
-    {
-      book_img:
-        "https://statics.vinpearl.com/suoi-hoa-lan-nha-trang-1_1630833508.jpg",
-      book_name: "Khí chất không mất tiền mua",
-    },
-    {
-      book_img:
-        "https://vitas.org.vn/wp-content/uploads/2021/08/dac-diem-hinh-thai-cay-che.jpg",
-      book_name: "Tết ở làng địa ngục",
-    },
-    {
-      book_img:
-        "https://inkythuatso.com/uploads/thumbnails/800/2022/06/hinh-anh-cay-xanh-mam-non-cho-dien-thoai-2-inkythuatso-01-10-48-06.jpg",
-      book_name: "Phải lòng với cô đơn",
-    },
-  ];
-
-  const current_books = [
-    {
-      book_img:
-        "https://statics.vinpearl.com/suoi-hoa-lan-nha-trang-1_1630833508.jpg",
-      book_name: "Khí chất không mất tiền mua",
-    },
-    {
-      book_img:
-        "https://vitas.org.vn/wp-content/uploads/2021/08/dac-diem-hinh-thai-cay-che.jpg",
-      book_name: "Tết ở làng địa ngục",
-    },
-    {
-      book_img:
-        "https://inkythuatso.com/uploads/thumbnails/800/2022/06/hinh-anh-cay-xanh-mam-non-cho-dien-thoai-2-inkythuatso-01-10-48-06.jpg",
-      book_name: "Phải lòng với cô đơn",
-    },
-  ];
 </script>
 
 <template>
