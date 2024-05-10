@@ -51,8 +51,13 @@ const router = createRouter({
     },
     {
       path: "/sach",
-      name: "Sách",
+      name: "Sach",
       component: () => import("../views/BookDetail.vue"),
+    },
+    {
+      path: "/sach/bookContent",
+      name: "Content",
+      component: () => import("../views/BookContent.vue"),
     },
   ],
 });
