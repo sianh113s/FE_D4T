@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import AdminDashboard from "../views/AdminView/AdminDashboard.vue";
+import AdminDashboard from "../views/admin/AdminDashboard.vue";
 import { useConditionStore } from "../store/index.js";
-import NapView from "@/views/NapView.vue";
+import NapView from "@/views/nap/NapView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -68,19 +68,14 @@ const router = createRouter({
       component: () => import("../views/account/TransactionHistoriesView.vue"),
     },
     {
-      path: "/test",
-      name: "test",
-      component: () => import("../views/account/test.vue"),
-    },
-    {
       path: "/sach",
       name: "Sach",
-      component: () => import("../views/BookDetail.vue"),
-    },      
+      component: () => import("../views/book/BookDetail.vue"),
+    },
     {
       path: "/sach/bookContent",
       name: "Content",
-      component: () => import("../views/BookContent.vue"),
+      component: () => import("../views/book/BookContent.vue"),
     },
     {
       path: "/Nap",

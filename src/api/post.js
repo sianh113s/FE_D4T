@@ -6,6 +6,7 @@ const postReq = async (url, data) => {
 
     return response.data;
   } catch (error) {
+    console.log("error :>> ", error);
     return error?.response?.data?.message;
   }
 };
