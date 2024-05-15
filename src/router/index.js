@@ -124,18 +124,10 @@ const router = createRouter({
         }
       },
     },
-
     {
-      path: "/sach",
-      name: "Sach",
-      component: () => import("../views/book/BookDetail.vue"),
-      beforeEnter: (to, from, next) => {
-        if (Object.keys(to.query).length > 0) {
-          next();
-        } else {
-          next({ name: "home" });
-        }
-      },
+      path: "/sach/bookContent",
+      name: "Content",
+      component: () => import("../views/book/BookContent.vue"),
     },
     {
       path: "/Nap",
