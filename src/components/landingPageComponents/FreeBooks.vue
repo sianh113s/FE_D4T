@@ -7,7 +7,7 @@
 
   const getData = async () => {
     data.value = await getReq("/book/free");
-    console.log("data.value :>> ", data.value);
+    // console.log("data.value :>> ", data.value);
   };
 
   onMounted(getData);

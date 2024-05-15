@@ -306,10 +306,20 @@
                   v-for="chapter in firstColumnChapters"
                   :key="chapter.id"
                 >
-                  <icon class="mt-4 pi pi-play-circle"></icon>&nbsp;<RouterLink
-                    to="/"
-                    >{{ "Trang " + chapter.PageNumber }}</RouterLink
+                  <icon class="mt-4 pi pi-play-circle"></icon>&nbsp;
+
+                  <router-link
+                    :to="{
+                      name: 'Content',
+                      query: {
+                        title_for_search: chapter.title_for_search,
+                        page: chapter.PageNumber,
+                      },
+                    }"
                   >
+                    {{ "Trang " + chapter.PageNumber }}
+                  </router-link>
+
                   <br />
                 </li>
               </ul>
