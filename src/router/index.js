@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import AdminDashboard from "../views/AdminView/AdminDashboard.vue";
+import AdminDashboard from "../views/admin/AdminDashboard.vue";
 import { useConditionStore } from "../store/index.js";
-import NapView from "@/views/NapView.vue";
+import NapView from "@/views/nap/NapView.vue";
+import PaymentView from "@/views/nap/PaymentView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -68,19 +69,32 @@ const router = createRouter({
       component: () => import("../views/account/TransactionHistoriesView.vue"),
     },
     {
-      path: "/test",
-      name: "test",
-      component: () => import("../views/account/test.vue"),
-    },
-    {
       path: "/sach",
-      name: "sach",
-      component: () => import("../views/BookDetail.vue"),
+      name: "Sach",
+      component: () => import("../views/book/BookDetail.vue"),
+      beforeEnter: (to, from, next) => {
+        if (Object.keys(to.query).length > 0) {
+          next();
+        } else {
+          next({ name: "home" });
+        }
+      },
+    },
+
+    {
+      path: "/sach/bookContent",
+      name: "Content",
+      component: () => import("../views/book/BookContent.vue"),
     },
     {
       path: "/Nap",
       name: "Nap",
       component: NapView,
+    },
+    {
+      path: "/payment",
+      name: "PaymentView",
+      component: PaymentView,
     },
   ],
 });

@@ -18,7 +18,7 @@
   const registerUser = async (urlApi, requestData) => {
     try {
       const response = await http.post(urlApi, requestData);
-      console.log("response :>> ", response);
+      // console.log("response :>> ", response);
 
       showNotification(toast, "success", "Thông báo", response.data.message);
 

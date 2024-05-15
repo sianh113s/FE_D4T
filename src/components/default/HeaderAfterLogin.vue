@@ -55,7 +55,7 @@
         router.go();
       }, 1000);
     } catch (error) {
-      console.log("error :>> ", error);
+      // console.log("error :>> ", error);
       showNotification(
         toast,
         "error",

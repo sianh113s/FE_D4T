@@ -52,7 +52,13 @@
               :key="index"
             >
               <td class="font-bold cursor-pointer book-hover">
-                {{ book.Title }}
+                <router-link
+                  :to="{
+                    name: 'Sach',
+                    query: { title_for_search: book.title_for_search },
+                  }"
+                  >{{ book.Title }}</router-link
+                >
               </td>
               <td class="cate-hover text-[14px] cursor-pointer">
                 {{ book.Categories }}

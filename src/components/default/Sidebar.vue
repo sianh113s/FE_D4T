@@ -8,7 +8,7 @@
   const modalRef = ref(null);
 
   onClickOutside(modalRef, (event) => {
-    console.log(event);
+    // console.log(event);
     modal.value = false;
   });
 
