@@ -17,6 +17,16 @@
   const loginUser = async (urlApi, data) => {
     try {
       const response = await http.post(urlApi, data);
+
+      localStorage.setItem(
+        "FullName",
+        JSON.stringify(response.data.metadata.user.FullName)
+      );
+      localStorage.setItem(
+        "Username",
+        JSON.stringify(response.data.metadata.user.Username)
+      );
+
       localStorage.setItem(
         "accessToken",
         JSON.stringify(response.data.metadata.tokens.accessToken)
@@ -33,7 +43,7 @@
 
       setTimeout(() => {
         router.push({ path: "/" });
-      }, 2000);
+      }, 500);
     } catch (error) {
       showNotification(
         toast,
@@ -97,7 +107,7 @@
           <label
             for="email"
             class="block my-2 text-[15px] font-medium dark:text-white"
-            >Tên người dùng/Email</label
+            >Tên đăng nhập hoặc Email</label
           >
           <input
             type="text"

@@ -2,18 +2,44 @@
   import HeaderBeforeLogin from "@/components/default/HeaderBeforeLogin.vue";
   import HeaderAfterLogin from "@/components/default/HeaderAfterLogin.vue";
   import FooterApp from "@/components/default/FooterApp.vue";
-  import { useConditionStore } from "@/store";
+  import MainBanner from "@/components/landingPageComponents/MainBanner.vue";
+  import HotBooks from "@/components/landingPageComponents/HotBooks.vue";
+  import NewBooks from "@/components/landingPageComponents/NewBooks.vue";
+  import TrackingBooks from "@/components/landingPageComponents/TrackingBooks.vue";
+  import FreeBooks from "@/components/landingPageComponents/FreeBooks.vue";
+
+  import { RouterLink, RouterView } from "vue-router";
+
+  import { useCoinsStore, useConditionStore } from "@/store";
+  import { onMounted } from "vue";
 
   const store = useConditionStore();
+
+  const coinsStore = useCoinsStore();
+
+  onMounted(coinsStore.setCoins);
 </script>
 
 <template>
   <div>
-    <HeaderBeforeLogin v-if="!store.isLoggedIn"></HeaderBeforeLogin>
-    <HeaderAfterLogin v-else></HeaderAfterLogin>
-    <h1>This is Home View</h1>
-    <RouterLink to="/admin">Go to Admin</RouterLink>
-    <FooterApp></FooterApp>
+    <div>
+      <HeaderBeforeLogin v-if="!store.isLoggedIn"></HeaderBeforeLogin>
+      <HeaderAfterLogin v-else></HeaderAfterLogin>
+    </div>
+    <div>
+      <MainBanner></MainBanner>
+      <div class="flex flex-col items-center justify-center h-auto">
+        <TrackingBooks v-if="store.isLoggedIn"></TrackingBooks>
+        <FreeBooks></FreeBooks>
+        <HotBooks></HotBooks>
+      </div>
+      <div class="flex flex-col items-center justify-center h-auto">
+        <NewBooks></NewBooks>
+      </div>
+    </div>
+    <div>
+      <FooterApp></FooterApp>
+    </div>
   </div>
 </template>
 

@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import AdminDashboard from "../views/AdminView/AdminDashboard.vue";
+import AdminDashboard from "../views/admin/AdminDashboard.vue";
 import { useConditionStore } from "../store/index.js";
+import NapView from "@/views/nap/NapView.vue";
+import PaymentView from "@/views/nap/PaymentView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,27 +47,54 @@ const router = createRouter({
     {
       path: "/account/bookcase",
       name: "bookcase",
-      component: () => import("../views/BookCaseView.vue"),
+      component: () => import("../views/account/BookCaseView.vue"),
     },
     {
       path: "/account/profile",
       name: "profile",
-      component: () => import("../views/AccountProfileView.vue"),
+      component: () => import("../views/account/AccountProfileView.vue"),
+      beforeEnter: (to, from, next) => {
+        const conditionStore = useConditionStore();
+
+        if (!conditionStore.isLoggedIn) {
+          next({ name: "home" });
+        } else {
+          next();
+        }
+      },
     },
     {
       path: "/account/transaction-histories",
       name: "transaction-histories",
-      component: () => import("../views/TransactionHistoriesView.vue"),
-    },
-    {
-      path: "/test",
-      name: "test",
-      component: () => import("../views/test.vue"),
+      component: () => import("../views/account/TransactionHistoriesView.vue"),
     },
     {
       path: "/sach",
-      name: "sach",
-      component: () => import("../views/BookDetail.vue"),
+      name: "Sach",
+      component: () => import("../views/book/BookDetail.vue"),
+      beforeEnter: (to, from, next) => {
+        if (Object.keys(to.query).length > 0) {
+          next();
+        } else {
+          next({ name: "home" });
+        }
+      },
+    },
+
+    {
+      path: "/sach/bookContent",
+      name: "Content",
+      component: () => import("../views/book/BookContent.vue"),
+    },
+    {
+      path: "/Nap",
+      name: "Nap",
+      component: NapView,
+    },
+    {
+      path: "/payment",
+      name: "PaymentView",
+      component: PaymentView,
     },
   ],
 });

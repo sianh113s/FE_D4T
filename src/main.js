@@ -32,6 +32,12 @@ import Paginator from 'primevue/paginator';
 import FloatLabel from 'primevue/floatlabel';
 import Password from 'primevue/password';
 
+import ScrollTop from 'primevue/scrolltop';
+
+import MegaMenu from 'primevue/megamenu';
+import Galleria from 'primevue/galleria';
+
+
 
 
 
@@ -45,6 +51,7 @@ app.use(pinia);
 app.use(PrimeVue, { ripple: true }, { inputStyle: "filled" }); //! Use Prime UI
 app.use(ToastService);
 
+app.component('ScrollTop', ScrollTop);
 app.component("Paginator",Paginator);
 app.component("Fieldset",Fieldset);
 app.component("Rating",Rating);
@@ -62,6 +69,8 @@ app.component("Avatar", Avatar);
 app.component("AvatarGroup", AvatarGroup);
 app.component("FloatLabel", FloatLabel);
 app.component("Password", Password);
+app.component("MegaMenu", MegaMenu);
+app.component("Galleria", Galleria);
 
 //
 app.mount("#app");

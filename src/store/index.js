@@ -1,3 +1,4 @@
+import http from "@/api/http-common";
 import { defineStore } from "pinia";
 
 export const useConditionStore = defineStore("condition", {
@@ -12,6 +13,25 @@ export const useConditionStore = defineStore("condition", {
     },
     toggleIsHiddenHeaderDropdown() {
       this.isHiddenHeaderDropdown = !this.isHiddenHeaderDropdown;
+    },
+  },
+});
+
+export const useCoinsStore = defineStore("coins", {
+  state: () => ({
+    coins: 0,
+  }),
+  getters: {},
+  actions: {
+    async setCoins() {
+      if (localStorage.getItem("isLoggedIn") === "true") {
+        const response = await http.get(
+          "http://localhost:3000/v1/api/transaction/coins"
+        );
+        this.coins = response.data.metadata?.coins;
+      } else {
+        this.coins = 0;
+      }
     },
   },
 });
