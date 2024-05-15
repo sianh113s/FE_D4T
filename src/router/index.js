@@ -4,6 +4,9 @@ import AdminDashboard from "../views/admin/AdminDashboard.vue";
 import { useConditionStore } from "../store/index.js";
 import NapView from "@/views/nap/NapView.vue";
 import PaymentView from "@/views/nap/PaymentView.vue";
+import AdminBook from "@/views/AdminView/AdminBook.vue";
+import AdminComment from "@/views/AdminView/AdminComment.vue";
+import AdminVoucher from "@/views/AdminView/AdminVoucher.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -43,6 +46,46 @@ const router = createRouter({
       path: "/admin",
       name: "admin",
       component: AdminDashboard,
+    },
+    {
+      path: "/admin/book",
+      name: "admin_book",
+      component: () => import("../views/AdminView/AdminBook.vue"),
+    },
+    {
+      path: "/admin/user",
+      name: "admin_user",
+      component: () => import("../views/AdminView/AdminUser.vue"),
+    },
+    {
+      path: "/admin/comment",
+      name: "admin_comment",
+      component: () => import("../views/AdminView/AdminComment.vue"),
+    },
+    {
+      path: "/admin/voucher",
+      name: "admin_voucher",
+      component: () => import("../views/AdminView/AdminVoucher.vue"),
+    },
+    {
+      path: "/admin/createbook",
+      name: "createbook",
+      component: () => import("../views/AdminView/CreateBook.vue"),
+    },
+    {
+      path: "/admin/editbook",
+      name: "editbook",
+      component: () => import("../views/AdminView/EditBook.vue"),
+    },
+    {
+      path: "/admin/deletebook",
+      name: "deletebook",
+      component: () => import("../views/AdminView/DeleteBook.vue"),
+    },
+    {
+      path: "/admin/deleteuser",
+      name: "deleteuser",
+      component: () => import("../views/AdminView/DeleteUser.vue"),
     },
     {
       path: "/account/bookcase",
