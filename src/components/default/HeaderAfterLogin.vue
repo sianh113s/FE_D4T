@@ -219,8 +219,7 @@
                 </div>
               </div>
             </li>
-
-            <li class="p-4 cursor-pointer menu-hover">
+            <li class="p-4 cursor-pointer">
               <a href="#sachmoinhat"> Sách mới nhất </a>
             </li>
             <li class="p-4 cursor-pointer menu-hover">

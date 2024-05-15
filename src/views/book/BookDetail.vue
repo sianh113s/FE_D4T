@@ -23,7 +23,7 @@
 
   // Example home object
   const showFullContent = ref(false); // Boolean flag
-  const items = ref([{ label: "Tết ở làng địa ngục", route: "/sach" }]); // Example list of items
+  const items = ref([{ label: "", route: "/sach" }]); // Example list of items
   const user = ref([
     {
       avatar:

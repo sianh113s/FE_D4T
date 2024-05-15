@@ -52,6 +52,7 @@
               class="w-full [border:none] [outline:none] font-segoe-ui text-13xl bg-[transparent] h-[43px] relative text-black text-left flex items-center p-0 z-[1] mq800:text-7xl mq450:text-lgi"
               placeholder="Nhập mã code"
               type="text"
+              maxlength="20"
             />
           </div>
           <button

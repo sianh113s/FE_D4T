@@ -4,6 +4,7 @@ import AdminDashboard from "../views/admin/AdminDashboard.vue";
 import { useConditionStore } from "../store/index.js";
 import NapView from "@/views/nap/NapView.vue";
 import PaymentView from "@/views/nap/PaymentView.vue";
+import THTView from "@/views/nap/THTView.vue";
 // import AdminBook from "@/views/admin/AdminBook.vue";
 // import AdminComment from "@/views/admin/AdminComment.vue";
 // import AdminVoucher from "@/views/admin/AdminVoucher.vue";
@@ -122,20 +123,11 @@ const router = createRouter({
           next({ name: "home" });
         }
       },
-
     },
-
     {
-      path: "/sach",
-      name: "Sach",
-      component: () => import("../views/book/BookDetail.vue"),
-      beforeEnter: (to, from, next) => {
-        if (Object.keys(to.query).length > 0) {
-          next();
-        } else {
-          next({ name: "home" });
-        }
-      },
+      path: "/sach/bookContent",
+      name: "Content",
+      component: () => import("../views/book/BookContent.vue"),
     },
     {
       path: "/Nap",
@@ -143,9 +135,14 @@ const router = createRouter({
       component: NapView,
     },
     {
-      path: "/payment",
+      path: "/Nap/Payment",
       name: "PaymentView",
       component: PaymentView,
+    },
+    {
+      path: "/Nap/Payment/Tim-hieu-them",
+      name: "Tim-hieu-them",
+      component: THTView,
     },
   ],
 });
