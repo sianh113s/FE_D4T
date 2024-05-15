@@ -219,9 +219,10 @@
                 </div>
               </div>
             </li>
-
-            <li class="p-4 cursor-pointer menu-hover">
-              <a href="#sachmoinhat"> Sách mới nhất </a>
+            <li class="p-4 cursor-pointer">Sách mới nhất</li>
+            <li class="p-4 cursor-pointer">Hot</li>
+            <li class="p-4 cursor-pointer">
+              <RouterLink to="/Nap">Nạp sồi</RouterLink>
             </li>
             <li class="p-4 cursor-pointer menu-hover">
               <a href="#sachhot"> Hot </a>

@@ -4,6 +4,7 @@ import AdminDashboard from "../views/admin/AdminDashboard.vue";
 import { useConditionStore } from "../store/index.js";
 import NapView from "@/views/nap/NapView.vue";
 import PaymentView from "@/views/nap/PaymentView.vue";
+import THTView from "@/views/nap/THTView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -92,10 +93,15 @@ const router = createRouter({
       component: NapView,
     },
     {
-      path: "/payment",
+      path: "/Nap/Payment",
       name: "PaymentView",
       component: PaymentView,
     },
+    {
+      path: "/Nap/Payment/Tim-hieu-them",
+      name: "Tim-hieu-them",
+      component: THTView,
+    }
   ],
 });
 

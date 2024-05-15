@@ -41,7 +41,7 @@
                     class="w-[103px] h-[105px] relative rounded-6xl object-cover z-[1]"
                     loading="lazy"
                     alt=""
-                    src="../../src/assets/imgs/AnhQR.jpg"
+                    src="../../assets/imgs/AnhQR.jpg"
                   />
                 </div>
                 <b
@@ -64,7 +64,7 @@
                   <img
                     class="w-[103px] h-[108px] relative rounded-6xl object-cover z-[1]"
                     alt=""
-                    src="../../src/assets/imgs/AnhVi.png"
+                    src="../../assets/imgs/AnhVi.png"
                   />
                 </div>
                 <div
@@ -102,7 +102,7 @@
                     <img
                       class="w-[103px] h-[103px] relative rounded-6xl object-cover z-[1]"
                       alt=""
-                      src="../../src/assets/imgs/AnhATM.png"
+                      src="../../assets/imgs/AnhATM.png"
                     />
                   </div>
                   <div
@@ -123,52 +123,52 @@
                   <img
                     class="h-[185px] w-[185px] relative rounded-8xs object-contain"
                     alt=""
-                    src="../../src/assets/nganhang/ACB.png"
+                    src="../../assets/nganhang/ACB.png"
                   />
                   <img
                     class="h-[185px] w-[185px] relative rounded-8xs object-cover"
                     alt=""
-                    src="../../src/assets/nganhang/AGB.jpg"
+                    src="../../assets/nganhang/AGB.jpg"
                   />
                   <img
                     class="h-[185px] w-[185px] relative rounded-8xs object-cover"
                     alt=""
-                    src="../../src/assets/nganhang/BIDV.jpg"
+                    src="../../assets/nganhang/BIDV.jpg"
                   />
                   <img
                     class="h-[185px] w-[185px] relative rounded-8xs object-cover"
                     alt=""
-                    src="../../src/assets/nganhang/MB.jpg"
+                    src="../../assets/nganhang/MB.jpg"
                   />
                   <img
                     class="h-[185px] w-[185px] relative rounded-8xs object-contain"
                     alt=""
-                    src="../../src/assets/nganhang/SHB.png"
+                    src="../../assets/nganhang/SHB.png"
                   />
                   <img
                     class="h-[185px] w-[185px] relative rounded-8xs object-cover"
                     alt=""
-                    src="../../src/assets/nganhang/TCB.png"
+                    src="../../assets/nganhang/TCB.png"
                   />
                   <img
                     class="h-[185px] w-[185px] relative rounded-8xs object-contain"
                     alt=""
-                    src="../../src/assets/nganhang/TPB.jpg"
+                    src="../../assets/nganhang/TPB.jpg"
                   />
                   <img
                     class="h-[185px] w-[185px] relative rounded-8xs object-cover"
                     alt=""
-                    src="../../src/assets/nganhang/VIB.png"
+                    src="../../assets/nganhang/VIB.png"
                   />
                   <img
                     class="h-[185px] w-[185px] relative rounded-8xs object-cover"
                     alt=""
-                    src="../../src/assets/nganhang/VietB.png"
+                    src="../../assets/nganhang/VietB.png"
                   />
                   <img
                     class="h-[185px] w-[185px] relative rounded-8xs object-cover"
                     alt=""
-                    src="../../src/assets/nganhang/VPB.jpg"
+                    src="../../assets/nganhang/VPB.jpg"
                   />
                 </div>
               </div>
