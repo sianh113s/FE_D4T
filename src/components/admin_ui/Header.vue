@@ -4,8 +4,6 @@
   import { useConditionStore } from "@/store";
 
   const store = useConditionStore();
-
-  
 </script>
 
 <template>
@@ -13,11 +11,13 @@
     <header class="">
       <div class="h-[80px] flex justify-between px-6 header__inner">
         <div class="left">
-          <img
-            class="w-[167px] h-[48px]"
-            src="../../assets/imgs/logo-dai.png"
-            alt="Logo"
-          />
+          <RouterLink to="/">
+            <img
+              class="w-[167px] h-[48px]"
+              src="../../assets/imgs/logo-dai.png"
+              alt="Logo"
+            />
+          </RouterLink>
         </div>
 
         <!-- RIGHT -->
@@ -46,15 +46,15 @@
             <div class="tool-menu rounded-md w-[180px] bg-[#fff]">
               <div class="p-[10px]">
                 <ul>
-                    <li class="flex items-center gap-3">
-                      <Button
+                  <li class="flex items-center gap-3">
+                    <Button
                       class="w-full"
                       label="Đăng xuất"
                       severity="secondary"
                       icon="pi pi-sign-out"
                       text
-                      />
-                    </li>
+                    />
+                  </li>
                 </ul>
               </div>
             </div>

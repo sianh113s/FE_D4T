@@ -6,7 +6,6 @@ import router from "./router";
 import { createPinia } from "pinia";
 import "primeicons/primeicons.css";
 
-
 //! import UI
 import PrimeVue from "primevue/config";
 import "primevue/resources/themes/aura-light-green/theme.css";
@@ -24,24 +23,19 @@ import InputText from "primevue/inputtext";
 import Avatar from "primevue/avatar";
 import AvatarGroup from "primevue/avatargroup";
 
-import Breadcrumb from 'primevue/breadcrumb';
+import Breadcrumb from "primevue/breadcrumb";
 import Rating from "primevue/rating";
 import Fieldset from "primevue/fieldset";
-import Paginator from 'primevue/paginator';
+import Paginator from "primevue/paginator";
 
-import FloatLabel from 'primevue/floatlabel';
-import Password from 'primevue/password';
+import FloatLabel from "primevue/floatlabel";
+import Password from "primevue/password";
 
-import ScrollTop from 'primevue/scrolltop';
+import ScrollTop from "primevue/scrolltop";
 
-import MegaMenu from 'primevue/megamenu';
-import Galleria from 'primevue/galleria';
-
-
-
-
-
-
+import MegaMenu from "primevue/megamenu";
+import Galleria from "primevue/galleria";
+import ConfirmationService from "primevue/confirmationservice";
 
 const app = createApp(App);
 const pinia = createPinia();
@@ -50,12 +44,13 @@ app.use(router);
 app.use(pinia);
 app.use(PrimeVue, { ripple: true }, { inputStyle: "filled" }); //! Use Prime UI
 app.use(ToastService);
+app.use(ConfirmationService);
 
-app.component('ScrollTop', ScrollTop);
-app.component("Paginator",Paginator);
-app.component("Fieldset",Fieldset);
-app.component("Rating",Rating);
-app.component("Breadcrumb",Breadcrumb);
+app.component("ScrollTop", ScrollTop);
+app.component("Paginator", Paginator);
+app.component("Fieldset", Fieldset);
+app.component("Rating", Rating);
+app.component("Breadcrumb", Breadcrumb);
 app.component("IconField", IconField);
 app.component("InputIcon", InputIcon);
 app.component("Toast", Toast);
