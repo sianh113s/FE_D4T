@@ -16,8 +16,6 @@
   const confirm = useConfirm();
 
   const confirm2 = async (Username) => {
-    console.log("Username :>> ", Username);
-
     confirm.require({
       message: "Do you want to delete this record?",
       header: "Danger Zone",
@@ -69,11 +67,6 @@
     users.value = response.value.metadata.users;
 
     isLoading.value = false;
-  };
-
-  const handleRemoveUser = async (Username) => {
-    await postReq("/admin/user/remove", { Username });
-    await callAPI();
   };
 
   const debouncedSearch = debounce(async () => {
@@ -148,6 +141,10 @@
           <Column
             field="Birthday"
             header="Ngày sinh"
+          ></Column>
+          <Column
+            field="coins"
+            header="Số dư"
           ></Column>
           <Column
             field="Roles"
