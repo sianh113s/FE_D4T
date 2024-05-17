@@ -31,3 +31,4 @@ coverage
 yarn.lock
 .vscode
 bun.lockb
+.env

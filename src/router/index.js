@@ -83,11 +83,7 @@ const router = createRouter({
       name: "deletebook",
       component: () => import("../views/admin/DeleteBook.vue"),
     },
-    {
-      path: "/admin/deleteuser",
-      name: "deleteuser",
-      component: () => import("../views/admin/DeleteUser.vue"),
-    },
+
     {
       path: "/account/bookcase",
       name: "bookcase",
