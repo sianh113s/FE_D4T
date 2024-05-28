@@ -1,10 +1,11 @@
 <script setup>
-  import { ref } from "vue";
+  import { onMounted, ref } from "vue";
   import Header from "../../components/admin_ui/Header.vue";
   import Sidebar from "../../components/admin_ui/Sidebar.vue";
   import Footer from "../../components/admin_ui/Footer.vue";
   import CardInfor from "../../components/admin_ui/CardInfor.vue";
   import ChartDemo from "../../components/admin_ui/ChartDemo.vue";
+  import getReq from "@/api/get";
 
   const cardInfos = ref([
     {
@@ -29,6 +30,18 @@
       desc: "trong ngày",
     },
   ]);
+
+  const callAPI = async () => {
+    const res = await getReq("/admin/users/count");
+    const resBook = await getReq("/admin/books/count");
+    const resTransaction = await getReq("/admin/transactions/count");
+
+    cardInfos.value[0].counter = res.metadata.totalUser;
+    cardInfos.value[1].counter = resBook.metadata.totalBook;
+    cardInfos.value[2].counter = resTransaction.metadata.totalTransaction;
+  };
+
+  onMounted(callAPI);
 </script>
 
 <template>

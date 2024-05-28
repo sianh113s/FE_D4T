@@ -1,12 +1,60 @@
 <script setup>
   import { RouterLink } from "vue-router";
-
   import { useConditionStore } from "@/store";
+  import http from "@/api/http-common";
+  import { useToast } from "primevue/usetoast";
+  import showNotification from "@/utils/showNotification";
+  import router from "@/router";
 
+  const toast = useToast();
   const store = useConditionStore();
+
+  const handlleLogout = async () => {
+    let urlApi = "/access/logout";
+    let requestData = {
+      accessToken: localStorage.getItem("accessToken") || "",
+      refreshToken: localStorage.getItem("refreshToken") || "",
+    };
+
+    try {
+      const response = await http.post(urlApi, requestData);
+
+      showNotification(
+        toast,
+        "success",
+        "Thông báo",
+        response.data.message,
+        1000
+      );
+      store.isLoggedIn = false;
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      localStorage.removeItem("isLoggedIn");
+
+      localStorage.clear();
+
+      setTimeout(() => {
+        // router.push({ path: "/" });
+        router.go();
+      }, 500);
+
+      return;
+    } catch (error) {
+      // console.log("error :>> ", error);
+      showNotification(
+        toast,
+        "error",
+        "Rất tiếc!",
+        error?.response?.data?.message
+      );
+      router.push({ path: "/" });
+      return;
+    }
+  };
 </script>
 
 <template>
+  <Toast />
   <div>
     <header class="">
       <div class="h-[80px] flex justify-between px-6 header__inner">
@@ -48,6 +96,7 @@
                 <ul>
                   <li class="flex items-center gap-3">
                     <Button
+                      @click="handlleLogout"
                       class="w-full"
                       label="Đăng xuất"
                       severity="secondary"

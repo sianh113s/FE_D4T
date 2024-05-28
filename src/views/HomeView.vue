@@ -2,11 +2,11 @@
   import HeaderBeforeLogin from "@/components/default/HeaderBeforeLogin.vue";
   import HeaderAfterLogin from "@/components/default/HeaderAfterLogin.vue";
   import FooterApp from "@/components/default/FooterApp.vue";
-  import MainBanner from "@/components/landingPageComponents/MainBanner.vue";
-  import HotBooks from "@/components/landingPageComponents/HotBooks.vue";
-  import NewBooks from "@/components/landingPageComponents/NewBooks.vue";
-  import TrackingBooks from "@/components/landingPageComponents/TrackingBooks.vue";
-  import FreeBooks from "@/components/landingPageComponents/FreeBooks.vue";
+  import MainBanner from "@/components/home/MainBanner.vue";
+  import HotBooks from "@/components/home/HotBooks.vue";
+  import NewBooks from "@/components/home/NewBooks.vue";
+  import TrackingBooks from "@/components/home/TrackingBooks.vue";
+  import FreeBooks from "@/components/home/FreeBooks.vue";
 
   import { RouterLink, RouterView } from "vue-router";
 

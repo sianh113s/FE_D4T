@@ -5,9 +5,12 @@
   import router from "@/router";
   import { useConditionStore } from "@/store";
   import showNotification from "../../utils/showNotification.js";
+  import useAdminStore from "@/store/admin.js";
 
-  const store = useConditionStore();
   const toast = useToast();
+  const store = useConditionStore();
+  const adminStore = useAdminStore();
+  const { setIsAdmin } = adminStore;
 
   const formData = ref({
     username: "",
@@ -35,16 +38,24 @@
         "refreshToken",
         JSON.stringify(response.data.metadata.tokens.refreshToken)
       );
-      showNotification(toast, "success", "Thông báo", response.data.message);
 
       //
       store.setLoggedIn();
       localStorage.setItem("isLoggedIn", true);
 
-      setTimeout(() => {
-        router.push({ path: "/" });
-      }, 500);
+      if (response.data.metadata.user.Roles === "A") {
+        localStorage.setItem("isAdmin", true);
+        setIsAdmin(true);
+      }
+
+      showNotification(toast, "success", "Thông báo", response.data.message);
+
+      router.push("/");
+      // setTimeout(() => {
+      //   // router.go();
+      // }, 500);
     } catch (error) {
+      console.log("error :>> ", error);
       showNotification(
         toast,
         "error",
@@ -140,7 +151,7 @@
           type="submit"
           class="btn-color w-[220px] h-[50px] mt-10 rounded-2xl font-[500] text-[15px] tracking-wide shadow-xl"
         >
-          <span>TIẾN HÀNH ĐĂNG NHẬP</span>
+          <span class="uppercase">Tiến hành đăng nhập</span>
         </button>
       </div>
       <div class="sub-title flex justify-between items-center p-[10px] mt-0">

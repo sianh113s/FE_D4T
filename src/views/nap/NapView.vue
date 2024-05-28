@@ -8,10 +8,8 @@
 
   const router = useRouter();
 
-  // Các phương thức xử lý sự kiện khi nhấn nút "Nạp sồi"
   const onNpGiTextClick = () => {
-    // Điều hướng sang trang thanh toán
-    router.push("/Nap/Payment"); // Thay đổi '/payment' bằng đường dẫn của trang thanh toán thực tế
+    router.push("/Nap/Payment");
   };
 </script>
 

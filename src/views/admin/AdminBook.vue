@@ -134,9 +134,8 @@
         <DataTable
           v-else
           :value="truncatedBooks"
-          tableStyle="min-width: 200px"
+          style="min-width: 200px"
           scrollable
-          scrollWidth="400px"
         >
           <Column
             field="BookID"

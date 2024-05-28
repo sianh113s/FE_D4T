@@ -95,7 +95,7 @@
             </InputIcon>
             <InputText
               v-model="searchValue"
-              placeholder="Tìm kiếm..."
+              placeholder="Tên đăng nhập..."
             />
           </IconField>
         </div>
@@ -108,9 +108,8 @@
         <DataTable
           v-else
           :value="users"
-          tableStyle="min-width: 200px"
+          style="min-width: 200px"
           scrollable
-          scrollWidth="400px"
         >
           <Column
             field="ID"
