@@ -5,8 +5,11 @@
   import { useRoute } from "vue-router";
   import SwitchPage from "@/components/book/SwitchPage.vue";
   import CreateComment from "@/components/book/CreateComment.vue";
+  import showNotification from "@/utils/showNotification";
   // import SwitchPageHeader from "@/components/book/SwitchPageHeader.vue";
+  import { useToast } from "primevue/usetoast";
 
+  const toast = useToast();
   const $route = useRoute();
 
   const home = ref({
@@ -48,20 +51,75 @@
     fileUrl.value = `http://localhost:3000/v1/api/read?page=${page.value}&title=${title.value}`;
   };
 
-  //
+  // ICON
   const showIcon = ref(false);
 
   const clickPositionY = ref(120);
   // Hàm để thay đổi trạng thái của việc hiển thị icon
   const toggleIcon = (event) => {
     showIcon.value = !showIcon.value;
-    // Tính toán vị trí y của icon dựa trên vị trí click và kích thước của hình ảnh
     const imageRect = event.target.getBoundingClientRect();
     clickPositionY.value = event.clientY - imageRect.top;
+  };
+
+  const callAPICreateBookmark = async () => {
+    const dataReq = {
+      title_for_search,
+      Username: JSON.parse(localStorage.getItem("Username")),
+      PageNumber: page.value,
+      clickPositionY: clickPositionY.value,
+    };
+
+    // console.log("dataReq :>> ", dataReq);
+
+    if (dataReq.Username === "") {
+      showNotification(
+        toast,
+        "error",
+        "Thông báo",
+        "Bạn cần đăng nhập để thêm Bookmark!",
+        2000
+      );
+
+      return;
+    }
+
+    const resAPIdata = await postReq("/book/create-bookmark", dataReq);
+
+    // console.log("resAPIdata :>> ", resAPIdata);
+
+    if (resAPIdata.status === 200) {
+      showNotification(
+        toast,
+        "success",
+        "Thông báo",
+        "Bạn đã đánh dấu trang thành công!",
+        2000
+      );
+
+      return;
+    }
+  };
+
+  const handleCreateNewBookmark = async () => {
+    const curUsername = JSON.parse(localStorage.getItem("Username")) || "";
+    if (curUsername === "") {
+      showNotification(
+        toast,
+        "error",
+        "Thông báo",
+        "Bạn cần đăng nhập để thêm Bookmark!",
+        2000
+      );
+
+      return;
+    }
+    callAPICreateBookmark();
   };
 </script>
 <template>
   <div>
+    <Toast />
     <div>
       <Breadcrumb
         :home="home"
@@ -119,7 +177,8 @@
 
           <span
             v-if="showIcon"
-            class="icon pi pi-bookmark-fill"
+            @click="handleCreateNewBookmark"
+            class="text-3xl cursor-pointer icon pi pi-bookmark-fill"
             :style="{ top: clickPositionY + 'px' }"
           ></span>
         </div>
