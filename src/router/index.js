@@ -8,6 +8,8 @@ import THTView from "@/views/nap/THTView.vue";
 // import AdminBook from "@/views/admin/AdminBook.vue";
 // import AdminComment from "@/views/admin/AdminComment.vue";
 // import AdminVoucher from "@/views/admin/AdminVoucher.vue";
+import NotFoundView from "../views/NotFoundView.vue";
+import useAdminStore from "@/store/admin";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,6 +33,7 @@ const router = createRouter({
       component: () => import("../views/registration/SignInView.vue"),
       beforeEnter: (to, from, next) => {
         const conditionStore = useConditionStore();
+
         if (conditionStore.isLoggedIn) {
           next({ name: "home" });
         } else {
@@ -42,52 +45,136 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
+      beforeEnter: (to, from, next) => {
+        const adminStore = useAdminStore();
+        if (adminStore.isAdmin) {
+          next({ name: "admin" });
+        } else {
+          next();
+        }
+      },
     },
     {
       path: "/admin",
       name: "admin",
       component: AdminDashboard,
+      beforeEnter: (to, from, next) => {
+        const conditionStore = useConditionStore();
+        const adminStore = useAdminStore();
+
+        if (conditionStore.isLoggedIn && adminStore.isAdmin) {
+          next();
+        } else {
+          next({ name: "home" });
+        }
+      },
     },
     {
       path: "/admin/book",
       name: "admin_book",
       component: () => import("../views/admin/AdminBook.vue"),
+      beforeEnter: (to, from, next) => {
+        const conditionStore = useConditionStore();
+        const adminStore = useAdminStore();
+
+        if (conditionStore.isLoggedIn && adminStore.isAdmin) {
+          next();
+        } else {
+          next({ name: "home" });
+        }
+      },
     },
     {
       path: "/admin/user",
       name: "admin_user",
       component: () => import("../views/admin/AdminUser.vue"),
+      beforeEnter: (to, from, next) => {
+        const conditionStore = useConditionStore();
+        const adminStore = useAdminStore();
+
+        if (conditionStore.isLoggedIn && adminStore.isAdmin) {
+          next();
+        } else {
+          next({ name: "home" });
+        }
+      },
     },
     {
       path: "/admin/comment",
       name: "admin_comment",
       component: () => import("../views/admin/AdminComment.vue"),
+      beforeEnter: (to, from, next) => {
+        const conditionStore = useConditionStore();
+        const adminStore = useAdminStore();
+
+        if (conditionStore.isLoggedIn && adminStore.isAdmin) {
+          next();
+        } else {
+          next({ name: "home" });
+        }
+      },
     },
     {
       path: "/admin/voucher",
       name: "admin_voucher",
       component: () => import("../views/admin/AdminVoucher.vue"),
+      beforeEnter: (to, from, next) => {
+        const conditionStore = useConditionStore();
+        const adminStore = useAdminStore();
+
+        if (conditionStore.isLoggedIn && adminStore.isAdmin) {
+          next();
+        } else {
+          next({ name: "home" });
+        }
+      },
     },
     {
       path: "/admin/createbook",
       name: "createbook",
       component: () => import("../views/admin/CreateBook.vue"),
+      beforeEnter: (to, from, next) => {
+        const conditionStore = useConditionStore();
+        const adminStore = useAdminStore();
+
+        if (conditionStore.isLoggedIn && adminStore.isAdmin) {
+          next();
+        } else {
+          next({ name: "home" });
+        }
+      },
     },
     {
       path: "/admin/editbook",
       name: "editbook",
       component: () => import("../views/admin/EditBook.vue"),
+      beforeEnter: (to, from, next) => {
+        const conditionStore = useConditionStore();
+        const adminStore = useAdminStore();
+
+        if (conditionStore.isLoggedIn && adminStore.isAdmin) {
+          next();
+        } else {
+          next({ name: "home" });
+        }
+      },
     },
     {
       path: "/admin/deletebook",
       name: "deletebook",
       component: () => import("../views/admin/DeleteBook.vue"),
+      beforeEnter: (to, from, next) => {
+        const conditionStore = useConditionStore();
+        const adminStore = useAdminStore();
+
+        if (conditionStore.isLoggedIn && adminStore.isAdmin) {
+          next();
+        } else {
+          next({ name: "home" });
+        }
+      },
     },
-    {
-      path: "/admin/deleteuser",
-      name: "deleteuser",
-      component: () => import("../views/admin/DeleteUser.vue"),
-    },
+
     {
       path: "/account/bookcase",
       name: "bookcase",
@@ -144,6 +231,7 @@ const router = createRouter({
       name: "Tim-hieu-them",
       component: THTView,
     },
+    { path: "/:catchAll(.*)", component: NotFoundView },
   ],
 });
 

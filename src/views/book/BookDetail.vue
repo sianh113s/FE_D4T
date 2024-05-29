@@ -8,6 +8,10 @@
   import { useToast } from "primevue/usetoast";
   import router from "@/router";
   import { useRoute } from "vue-router";
+  import ConfirmDialog from "primevue/confirmdialog";
+  import { useConfirm } from "primevue/useconfirm";
+
+  const confirm = useConfirm();
   const toast = useToast();
   const $route = useRoute();
 
@@ -132,9 +136,81 @@
       );
     }
   };
+
+  const confirm1 = (price) => {
+    confirm.require({
+      message: `Bạn cần ${price} sồi để mở khóa sách này`,
+      header: "Mở khóa sách",
+      icon: "pi pi-exclamation-triangle",
+      rejectClass: "p-button-secondary p-button-outlined",
+      rejectLabel: "Hủy bỏ",
+      acceptLabel: "Mở khóa",
+      accept: async () => {
+        const resTransaction = await postReq("/transaction/use-coins", {
+          numberOfCoins: price,
+        });
+
+        if (resTransaction.status === 400) {
+          toast.add({
+            severity: "info",
+            summary: "Thông báo",
+            detail: "Tài khoản không có đủ sồi để mở khóa sách",
+            life: 1500,
+          });
+          return;
+        }
+
+        await postReq("/read/buy", {
+          title_for_search,
+        });
+
+        toast.add({
+          severity: "info",
+          summary: "Thông báo",
+          detail: "Mở khóa sách thành công",
+          life: 1500,
+        });
+
+        router.push({
+          path: "/sach/bookContent",
+          query: { title_for_search: title_for_search },
+        });
+      },
+      reject: () => {
+        toast.add({
+          severity: "error",
+          summary: "Thông báo",
+          detail: "Thao tác bị hủy bởi người dùng",
+          life: 2000,
+        });
+      },
+    });
+  };
+
+  const handleTracking = async () => {
+    const trackingFreeBook = await postReq("/read/tracking", {
+      title_for_search,
+    });
+
+    if (trackingFreeBook.status === 200) {
+      router.push({
+        path: "/sach/bookContent",
+        query: { title_for_search: title_for_search },
+      });
+    }
+
+    if (trackingFreeBook.status === 400) {
+      const bookRes = await postReq("/book/search-name", {
+        title: title_for_search,
+      });
+      const price = bookRes?.metadata?.books[0].Price;
+      confirm1(price);
+    }
+  };
 </script>
 
 <template>
+  <ConfirmDialog></ConfirmDialog>
   <div>
     <Toast />
     <!-- NAVBAR -->
@@ -190,15 +266,11 @@
               />
             </div>
             <div class="mt-5 ml-10">
-              <Button class="mr-5 rounded-full">
-                <RouterLink
-                  :to="{
-                    path: '/sach/bookContent',
-                    query: { title_for_search: title_for_search },
-                  }"
-                >
-                  <i class="pi pi-play-circle"></i> Đọc sách
-                </RouterLink>
+              <Button
+                @click="handleTracking"
+                class="mr-5 rounded-full"
+              >
+                <i class="pi pi-play-circle"></i> Đọc sách
               </Button>
               <Button
                 @click="handleLoved"

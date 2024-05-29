@@ -52,7 +52,7 @@
 
       setTimeout(() => {
         router.push({ path: "/" });
-        router.go();
+        // router.go();
       }, 1000);
     } catch (error) {
       // console.log("error :>> ", error);

@@ -18,6 +18,10 @@
   });
 
   const callAPI = async () => {
+    const curUsername = JSON.parse(localStorage.getItem("Username")) || "";
+    if (curUsername === "") {
+      return;
+    }
     try {
       const response = await postReq("/comment/list", {
         title_for_search: props.title_for_search,
