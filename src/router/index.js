@@ -174,7 +174,21 @@ const router = createRouter({
         }
       },
     },
+    {
+      path: "/admin/editVoucher",
+      name: "editvoucher",
+      component: () => import("../views/admin/EditVoucher.vue"),
+      beforeEnter: (to, from, next) => {
+        const conditionStore = useConditionStore();
+        const adminStore = useAdminStore();
 
+        if (conditionStore.isLoggedIn && adminStore.isAdmin) {
+          next();
+        } else {
+          next({ name: "home" });
+        }
+      },
+    },
     {
       path: "/account/bookcase",
       name: "bookcase",
