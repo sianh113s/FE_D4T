@@ -47,9 +47,9 @@
         </div>
         <div class="tooltip-middle m-[15px]">
           <div class="px-10 pb-[12px] flex items-center justify-center">
-            <RouterLink to="">
+            <RouterLink to="/Nap/Payment">
               <Button
-                class="rounded-[50px] w-full"
+                class="rounded-[50px] w-[220px]"
                 label="Nạp thêm sồi"
               />
             </RouterLink>

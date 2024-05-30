@@ -3,6 +3,7 @@
   const searchValue = ref("");
   const isKindBookVisible = ref(false);
   const isOverlayVisible = ref(false); // New ref
+  import router from "@/router";
 
   const showKindBook = () => {
     isKindBookVisible.value = true;
@@ -12,6 +13,17 @@
   const hideKindBook = () => {
     isKindBookVisible.value = false;
     isOverlayVisible.value = false; // Hide overlay when mega menu is not focused
+  };
+
+  const searchFn = () => {
+    if (searchValue.value !== "")
+      router.push({
+        path: "/search",
+        query: {
+          keyword: searchValue.value,
+        },
+      });
+    else return;
   };
 </script>
 
@@ -183,6 +195,7 @@
                     class="rounded-[50px]"
                     v-model="searchValue"
                     placeholder="Search"
+                    @focusout="searchFn"
                   />
                 </IconField>
               </div>

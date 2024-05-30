@@ -11,7 +11,7 @@ function convertUnixTimestampToDateString(timestamp) {
 }
 
 function convertDateStringToUnixTimestamp(dateString) {
-  const parts = dateString.split("/");
+  const parts = dateString?.split("/");
   const day = parseInt(parts[0], 10);
   const month = parseInt(parts[1], 10);
   const year = parseInt(parts[2], 10);
@@ -30,7 +30,7 @@ function convertDateToUnixTimestamp(dateObject) {
 }
 
 function convertDateStringToDateObject(dateString) {
-  const parts = dateString.split("/");
+  const parts = dateString?.split("/");
   const day = parseInt(parts[0], 10);
   const month = parseInt(parts[1], 10) - 1;
   const year = parseInt(parts[2], 10);

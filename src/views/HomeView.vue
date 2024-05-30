@@ -1,6 +1,7 @@
 <script setup>
   import HeaderBeforeLogin from "@/components/default/HeaderBeforeLogin.vue";
   import HeaderAfterLogin from "@/components/default/HeaderAfterLogin.vue";
+  import ScrollToTop from "@/components/default/ScrollToTop.vue";
   import FooterApp from "@/components/default/FooterApp.vue";
   import MainBanner from "@/components/home/MainBanner.vue";
   import HotBooks from "@/components/home/HotBooks.vue";
@@ -35,6 +36,10 @@
       </div>
       <div class="flex flex-col items-center justify-center h-auto">
         <NewBooks></NewBooks>
+      </div>
+
+      <div>
+        <ScrollToTop></ScrollToTop>
       </div>
     </div>
     <div>

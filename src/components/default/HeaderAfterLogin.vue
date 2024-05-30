@@ -28,6 +28,17 @@
 
   const userFname = JSON.parse(localStorage.getItem("FullName")) || "user";
 
+  const searchFn = () => {
+    if (searchValue.value !== "")
+      router.push({
+        path: "/search",
+        query: {
+          keyword: searchValue.value,
+        },
+      });
+    else return;
+  };
+
   const handlleLogout = async () => {
     let urlApi = "/access/logout";
     let requestData = {
@@ -237,6 +248,7 @@
                     class="rounded-[50px]"
                     v-model="searchValue"
                     placeholder="Search"
+                    @focusout="searchFn"
                   />
                 </IconField>
               </div>
@@ -304,10 +316,12 @@
               </div>
               <div class="tooltip-middle">
                 <div class="px-[15px] flex items-center justify-center">
-                  <Button
-                    class="rounded-[50px] w-full"
-                    label="Nạp thêm sồi"
-                  />
+                  <router-link :to="{ name: 'PaymentView' }">
+                    <Button
+                      class="w-[190px] rounded-[50px]"
+                      label="Nạp thêm sồi"
+                    />
+                  </router-link>
                 </div>
               </div>
               <div class="tooltip-bottom">

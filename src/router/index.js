@@ -4,10 +4,8 @@ import AdminDashboard from "../views/admin/AdminDashboard.vue";
 import { useConditionStore } from "../store/index.js";
 import NapView from "@/views/nap/NapView.vue";
 import PaymentView from "@/views/nap/PaymentView.vue";
+import SearchView from "@/views/search/SearchView.vue";
 import THTView from "@/views/nap/THTView.vue";
-// import AdminBook from "@/views/admin/AdminBook.vue";
-// import AdminComment from "@/views/admin/AdminComment.vue";
-// import AdminVoucher from "@/views/admin/AdminVoucher.vue";
 import NotFoundView from "../views/NotFoundView.vue";
 import useAdminStore from "@/store/admin";
 
@@ -244,6 +242,11 @@ const router = createRouter({
       path: "/Nap/Payment/Tim-hieu-them",
       name: "Tim-hieu-them",
       component: THTView,
+    },
+    {
+      path: "/search",
+      name: "search",
+      component: SearchView,
     },
     { path: "/:catchAll(.*)", component: NotFoundView },
   ],
