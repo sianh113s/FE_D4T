@@ -316,7 +316,7 @@
               </div>
               <div class="tooltip-middle">
                 <div class="px-[15px] flex items-center justify-center">
-                  <router-link :to="{ name: 'PaymentView' }">
+                  <router-link :to="{ name: 'nap_demo' }">
                     <Button
                       class="w-[190px] rounded-[50px]"
                       label="Nạp thêm sồi"

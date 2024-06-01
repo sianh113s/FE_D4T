@@ -52,6 +52,8 @@
       </div>
     </div>
   </div>
+
+  <!--  -->
   <section
     class="self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-[63px] box-border gap-[26px] max-w-full text-left text-13xl text-black font-segoe-ui mq800:pb-[27px] mq800:box-border mq1350:pb-[41px] mq1350:box-border"
   >
