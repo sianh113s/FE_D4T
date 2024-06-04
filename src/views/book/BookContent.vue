@@ -17,7 +17,7 @@
     label: "Trang chủ",
     route: "/",
   });
-  const items = ref([{ label: "", route: "/" }]);
+  const items = ref([]);
 
   const title_for_search = $route.query.title_for_search;
   const b_page = $route.query.page;
@@ -42,6 +42,11 @@
     PageNumber.value = resAPIdata.value.metadata.book.PageNumber;
 
     fileUrl.value = `http://localhost:3000/v1/api/read?page=${page.value}&title=${title.value}`;
+
+    items.value.push({
+      label: title.value,
+      route: `/sach?title_for_search=${title_for_search}`,
+    });
   });
 
   //

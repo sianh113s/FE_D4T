@@ -16,7 +16,7 @@
       datasets: [
         {
           label: "Người dùng mới",
-          data: [0, 0, 0, 19],
+          data: [0, 0, 0, 7],
           backgroundColor: [
             "rgba(249, 115, 22, 0.2)",
             "rgba(6, 182, 212, 0.2)",
